@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel & Explore - Dark Theme Layout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-main: #060b09; /* Deep dark green/black */
+            --bg-card: #121c17;
+            --accent-green: #1eb550;
+            --text-main: #ffffff;
+            --text-muted: #94a39b;
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            background-color: var(--accent-green);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .btn:hover { background-color: #179340; }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--text-muted);
+            border-radius: 30px;
+            padding: 10px 24px;
+        }
+
+        /* --- NAVBAR --- */
+        header { padding: 20px 0; position: absolute; width: 100%; z-index: 10; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--accent-green); }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links li a { font-size: 14px; color: var(--text-muted); transition: 0.3s; }
+        .nav-links li a:hover { color: var(--accent-green); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            padding: 160px 0 100px;
+            background: linear-gradient(rgba(6, 11, 9, 0.8), rgba(6, 11, 9, 0.9)), url('https://picsum.photos/1920/1080?nature') center/cover;
+            min-height: 80vh;
+        }
+        .hero-content { display: flex; justify-content: space-between; align-items: center; }
+        .hero-text { flex: 1; max-width: 600px; }
+        .hero-text h3 { font-size: 24px; color: var(--text-muted); margin-bottom: 10px; }
+        .hero-text h1 { font-size: 56px; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
+        .hero-text p { color: var(--text-muted); margin-bottom: 30px; font-size: 15px; }
+        .hero-buttons { display: flex; gap: 15px; }
+        
+        .hero-cards { flex: 0.8; display: flex; flex-direction: column; gap: 15px; align-items: flex-end; }
+        .h-card {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 10px;
+            width: 250px;
+            gap: 15px;
+        }
+        .h-card img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
+        .h-card h4 { font-size: 14px; margin-bottom: 4px; }
+
+        /* --- SECTION TITLES --- */
+        .section-title { text-align: center; margin-bottom: 40px; }
+        .section-title h2 { font-size: 32px; margin-bottom: 10px; }
+        .section-title p { color: var(--text-muted); font-size: 14px; max-width: 500px; margin: 0 auto; }
+
+        /* --- TOP DESTINATIONS (Slider) --- */
+        .top-destinations { padding: 80px 0; }
+        .dest-slider { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px; scrollbar-width: none; }
+        .dest-card { min-width: 280px; position: relative; border-radius: 15px; overflow: hidden; }
+        .dest-card img { width: 100%; height: 350px; object-fit: cover; }
+        .dest-info { position: absolute; bottom: 20px; left: 20px; }
+
+        /* --- EXCURSION ROUTE --- */
+        .excursion { padding: 80px 0; background: #0a110e; }
+        .excursion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .ex-text p { color: var(--text-muted); margin-bottom: 20px; }
+        .ex-images { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .ex-images img { border-radius: 15px; object-fit: cover; width: 100%; height: 200px; }
+        .ex-images img:first-child { grid-row: span 2; height: 415px; }
+
+        /* --- DESTINATION CATEGORIES --- */
+        .categories { padding: 60px 0; }
+        .cat-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .cat-item { text-align: center; background: var(--bg-card); padding: 15px; border-radius: 10px; min-width: 120px; }
+        .cat-item i { font-size: 24px; color: var(--accent-green); margin-bottom: 10px; }
+
+        /* --- POPULAR DESTINATIONS GRID --- */
+        .popular { padding: 80px 0; }
+        .pop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .pop-card { background: var(--bg-card); border-radius: 15px; overflow: hidden; padding: 15px; }
+        .pop-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+        .pop-card h3 { font-size: 18px; margin-bottom: 5px; }
+        .pop-loc { color: var(--text-muted); font-size: 13px; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
+        .pop-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
+        .pop-price { font-size: 20px; font-weight: 600; color: var(--accent-green); }
+
+        /* --- STATS BANNER --- */
+        .stats-section { padding: 60px 0; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 20px; background: var(--bg-card); padding: 40px; border-radius: 20px; align-items: center; }
+        .stat-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 15px; text-align: center; }
+        .stat-box h2 { font-size: 36px; color: var(--accent-green); }
+        .stats-text img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-top: 15px; }
+
+        /* --- FAQ SECTION --- */
+        .faq { padding: 80px 0; }
+        .faq-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        .faq-item { background: var(--bg-card); margin-bottom: 15px; border-radius: 10px; overflow: hidden; }
+        .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 500; }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-muted); }
+        .faq-item.active .faq-answer { padding: 0 20px 20px; max-height: 200px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        /* --- FOOTER --- */
+        footer { background: #040806; padding: 60px 0 20px; margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-col h4 { margin-bottom: 20px; font-size: 18px; }
+        .footer-col p, .footer-col ul li a { color: var(--text-muted); font-size: 14px; margin-bottom: 10px; display: block; }
+        .footer-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .footer-gallery img { width: 100%; height: 60px; object-fit: cover; border-radius: 5px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); font-size: 14px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .hero-content, .excursion-grid, .faq-container { grid-template-columns: 1fr; flex-direction: column; }
+            .hero-cards { align-items: flex-start; margin-top: 40px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo"><i class="fa-solid fa-leaf"></i> Triplo</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Tours</a></li>
+                <li><a href="#">Destination</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Pages</a></li>
+            </ul>
+            <a href="#" class="btn">Sign In</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h3>01</h3>
+                <h1>Never Stop<br>Exploring The<br>World</h1>
+                <p>Explore the world with our premium travel packages. We provide the best experience for your journey with top-tier accommodations and guided tours.</p>
+                <div class="hero-buttons">
+                    <button class="btn">Explore More</button>
+                    <button class="btn-outline"><i class="fa-solid fa-play"></i> Watch Tutorial</button>
+                </div>
+            </div>
+            <div class="hero-cards">
+                <!-- Stacked Cards as seen on right side -->
+                <div class="h-card">
+                    <img src="https://picsum.photos/100/100?random=1" alt="Dest">
+                    <div>
+                        <h4>Maldives Island</h4>
+                        <p style="font-size:12px; color:var(--text-muted);">Starting at $1,200</p>
+                    </div>
+                </div>
+                <div class="h-card">
+                    <img src="https://picsum.photos/100/100?random=2" alt="Dest">
+                    <div>
+                        <h4>Bali, Indonesia</h4>
+                        <p style="font-size:12px; color:var(--text-muted);">Starting at $900</p>
+                    </div>
+                </div>
+                <div class="h-card">
+                    <img src="https://picsum.photos/100/100?random=3" alt="Dest">
+                    <div>
+                        <h4>Swiss Alps</h4>
+                        <p style="font-size:12px; color:var(--text-muted);">Starting at $1,500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOP DESTINATIONS -->
+    <section class="top-destinations container">
+        <div class="section-title">
+            <h2>Top Destinations</h2>
+            <p>Discover our most popular travel spots curated just for you.</p>
+        </div>
+        <div class="dest-slider">
+            <div class="dest-card">
+                <img src="https://picsum.photos/400/500?random=4" alt="Location">
+                <h3 class="dest-info">Santorini, Greece</h3>
+            </div>
+            <div class="dest-card">
+                <img src="https://picsum.photos/400/500?random=5" alt="Location">
+                <h3 class="dest-info">Phuket, Thailand</h3>
+            </div>
+            <div class="dest-card">
+                <img src="https://picsum.photos/400/500?random=6" alt="Location">
+                <h3 class="dest-info">Maui, Hawaii</h3>
+            </div>
+            <div class="dest-card">
+                <img src="https://picsum.photos/400/500?random=7" alt="Location">
+                <h3 class="dest-info">Kyoto, Japan</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXCURSION ROUTE -->
+    <section class="excursion">
+        <div class="container excursion-grid">
+            <div class="ex-text">
+                <h2>Tropical Canopy Isle Miami</h2>
+                <p>Experience the ultimate tropical getaway with our meticulously planned excursion routes. Dive into clear waters, hike through dense canopies, and relax on pristine beaches.</p>
+                <a href="#" style="color: var(--accent-green); text-decoration: underline;">See Route Details</a>
+            </div>
+            <div class="ex-images">
+                <img src="https://picsum.photos/300/600?random=8" alt="Excursion">
+                <img src="https://picsum.photos/300/300?random=9" alt="Excursion">
+                <img src="https://picsum.photos/300/300?random=10" alt="Excursion">
+            </div>
+        </div>
+    </section>
+
+    <!-- POPULAR DESTINATIONS GRID -->
+    <section class="popular container">
+        <div class="section-title">
+            <h2>Popular Destinations For Your Trip Plans</h2>
+        </div>
+        <div class="pop-grid">
+            <!-- Card 1 -->
+            <div class="pop-card">
+                <img src="https://picsum.photos/400/300?random=11" alt="Dest">
+                <h3>Emerald Bay Resort</h3>
+                <div class="pop-loc"><i class="fa-solid fa-location-dot"></i> Bahamas</div>
+                <div class="pop-footer">
+                    <span class="pop-price">$1,499</span>
+                    <button class="btn" style="font-size: 12px; padding: 8px 16px;">Book Now</button>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="pop-card">
+                <img src="https://picsum.photos/400/300?random=12" alt="Dest">
+                <h3>Azure Coast Villas</h3>
+                <div class="pop-loc"><i class="fa-solid fa-location-dot"></i> French Riviera</div>
+                <div class="pop-footer">
+                    <span class="pop-price">$2,100</span>
+                    <button class="btn" style="font-size: 12px; padding: 8px 16px;">Book Now</button>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="pop-card">
+                <img src="https://picsum.photos/400/300?random=13" alt="Dest">
+                <h3>Highland Retreat</h3>
+                <div class="pop-loc"><i class="fa-solid fa-location-dot"></i> Scotland</div>
+                <div class="pop-footer">
+                    <span class="pop-price">$890</span>
+                    <button class="btn" style="font-size: 12px; padding: 8px 16px;">Book Now</button>
+                </div>
+            </div>
+            <!-- Duplicate cards for grid fill -->
+             <div class="pop-card">
+                <img src="https://picsum.photos/400/300?random=14" alt="Dest">
+                <h3>Sunset Beach Hotel</h3>
+                <div class="pop-loc"><i class="fa-solid fa-location-dot"></i> Maldives</div>
+                <div class="pop-footer">
+                    <span class="pop-price">$1,250</span>
+                    <button class="btn" style="font-size: 12px; padding: 8px 16px;">Book Now</button>
+                </div>
+            </div>
+             <div class="pop-card">
+                <img src="https://picsum.photos/400/300?random=15" alt="Dest">
+                <h3>Mountain Peak Lodge</h3>
+                <div class="pop-loc"><i class="fa-solid fa-location-dot"></i> Swiss Alps</div>
+                <div class="pop-footer">
+                    <span class="pop-price">$1,750</span>
+                    <button class="btn" style="font-size: 12px; padding: 8px 16px;">Book Now</button>
+                </div>
+            </div>
+             <div class="pop-card">
+                <img src="https://picsum.photos/400/300?random=16" alt="Dest">
+                <h3>Desert Oasis Camp</h3>
+                <div class="pop-loc"><i class="fa-solid fa-location-dot"></i> Dubai</div>
+                <div class="pop-footer">
+                    <span class="pop-price">$950</span>
+                    <button class="btn" style="font-size: 12px; padding: 8px 16px;">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section container">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <h2>30K+</h2>
+                <p>Happy Travelers</p>
+            </div>
+            <div class="stat-box">
+                <h2 style="color:white; background:var(--accent-green); border-radius:10px; display:inline-block; padding:0 10px;">10+</h2>
+                <p>Years Experience</p>
+            </div>
+            <div class="stats-text">
+                <h3>Discover The World</h3>
+                <p style="color:var(--text-muted); font-size:14px;">Join thousands of travelers who have trusted us to plan their perfect getaway. Over 112+ custom destinations and a 4.8-star average rating.</p>
+                <img src="https://picsum.photos/600/200?random=17" alt="Resort">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq container">
+        <div class="section-title">
+            <h2>F.A.Q</h2>
+            <p>Common questions about our travel plans and services.</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-question">How do I book a tour? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">Booking is simple. Just select your destination, choose your dates, and click the 'Book Now' button to proceed to secure checkout.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is the cancellation policy? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">You can cancel up to 48 hours before your trip for a full refund. Terms and conditions apply based on the specific package.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are flights included in the package? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">Some packages are all-inclusive, while others cover land arrangements only. Please check the specific package details.</div>
+                </div>
+            </div>
+            <div class="faq-image">
+                <img src="https://picsum.photos/600/400?random=18" alt="FAQ Mountain" style="border-radius: 15px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 style="color:var(--accent-green); margin-bottom:15px;"><i class="fa-solid fa-leaf"></i> Triplo</h3>
+                    <p>Your ultimate travel partner for discovering the most exotic and beautiful places around the globe.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Tour Packages</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <p><i class="fa-solid fa-phone"></i> +1 234 567 890</p>
+                    <p><i class="fa-solid fa-envelope"></i> info@triplo.com</p>
+                    <p><i class="fa-solid fa-location-dot"></i> 123 Travel Lane, NY</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Gallery</h4>
+                    <div class="footer-gallery">
+                        <img src="https://picsum.photos/100/100?random=19" alt="Gallery">
+                        <img src="https://picsum.photos/100/100?random=20" alt="Gallery">
+                        <img src="https://picsum.photos/100/100?random=21" alt="Gallery">
+                        <img src="https://picsum.photos/100/100?random=22" alt="Gallery">
+                        <img src="https://picsum.photos/100/100?random=23" alt="Gallery">
+                        <img src="https://picsum.photos/100/100?random=24" alt="Gallery">
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Triplo Travel Agency. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR FAQ ACCORDION -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
