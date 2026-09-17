@@ -9,12 +9,13 @@
     <style>
         /* --- VARIABLES & BASE STYLES --- */
         :root {
-            --bg-main: #070a0d;       /* Obsidian Black */
-            --bg-card: #10161d;       /* Dark Sapphire Slate */
-            --accent-gold: #d4af37;     /* Gold Accent */
-            --accent-green: #25d366;    /* WhatsApp Green */
-            --text-main: #f0f4f8;
-            --text-muted: #8b9bb0;
+            --bg-main: #050b12;       /* Midnight Black */
+            --bg-card: #0d1b2a;       /* Deep Ocean Blue */
+            --accent-blue: #4ea1ff;   /* Electric Blue */
+            --accent-blue-deep: #0d6efd;
+            --accent-green: #4ea1ff; /* Blue for consistent theme */
+            --text-main: #ffffff;
+            --text-muted: #b7c7d9;
             --font-title: 'Cinzel', serif;
             --font-body: 'Poppins', sans-serif;
         }
@@ -43,8 +44,8 @@
 
         /* --- BUTTONS --- */
         .btn {
-            background: linear-gradient(135deg, #d4af37, #aa820a);
-            color: #000;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
+            color: #fff;
             padding: 12px 26px;
             border-radius: 30px;
             border: none;
@@ -57,10 +58,10 @@
             transition: 0.3s ease;
             font-size: 14px;
         }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(78, 161, 255, 0.35); }
 
         .btn-whatsapp {
-            background-color: var(--accent-green);
+            background-color: var(--accent-blue);
             color: #fff;
             padding: 10px 20px;
             border-radius: 30px;
@@ -71,12 +72,12 @@
             font-size: 13px;
             transition: 0.3s;
         }
-        .btn-whatsapp:hover { background-color: #1eb854; transform: translateY(-2px); }
+        .btn-whatsapp:hover { background-color: var(--accent-blue-deep); transform: translateY(-2px); }
 
         .btn-outline {
             background: transparent;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
             border-radius: 30px;
             padding: 12px 26px;
             display: inline-flex;
@@ -85,15 +86,15 @@
             font-size: 14px;
             transition: 0.3s;
         }
-        .btn-outline:hover { background: rgba(212, 175, 55, 0.1); }
+        .btn-outline:hover { background: rgba(78, 161, 255, 0.1); }
 
         /* --- IMAGE PLACEHOLDER BOXES --- */
         .img-placeholder {
             width: 100%;
             height: 100%;
             min-height: 200px;
-            background: linear-gradient(135deg, #18222d, #0d131a);
-            border: 1px dashed rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, #14263a, #09141d);
+            border: 1px dashed rgba(78, 161, 255, 0.35);
             border-radius: 12px;
             display: flex;
             flex-direction: column;
@@ -104,7 +105,7 @@
             text-align: center;
             padding: 15px;
         }
-        .img-placeholder i { font-size: 32px; color: var(--accent-gold); margin-bottom: 8px; opacity: 0.7; }
+        .img-placeholder i { font-size: 32px; color: var(--accent-blue); margin-bottom: 8px; opacity: 0.8; }
 
         /* --- NAVBAR --- */
         header { 
@@ -112,37 +113,37 @@
             position: fixed; 
             top: 0; left: 0; width: 100%; 
             z-index: 1000; 
-            background: rgba(7, 10, 13, 0.95);
+            background: rgba(5, 11, 18, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            border-bottom: 1px solid rgba(78, 161, 255, 0.15);
         }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-title); font-size: 22px; font-weight: 700; color: var(--accent-gold); letter-spacing: 1px; }
+        .logo { font-family: var(--font-title); font-size: 22px; font-weight: 700; color: var(--accent-blue); letter-spacing: 1px; }
         .logo span { color: #fff; font-size: 14px; display: block; font-family: var(--font-body); font-weight: 300; }
 
         .nav-links { display: flex; gap: 25px; align-items: center; }
         .nav-links li a { font-size: 14px; color: var(--text-muted); transition: 0.3s; }
-        .nav-links li a:hover, .nav-links li a.active { color: var(--accent-gold); }
+        .nav-links li a:hover, .nav-links li a.active { color: var(--accent-blue); }
 
-        .hamburger { display: none; font-size: 22px; color: var(--accent-gold); cursor: pointer; }
+        .hamburger { display: none; font-size: 22px; color: var(--accent-blue); cursor: pointer; }
 
         /* --- HERO SECTION --- */
         .hero {
             padding: 150px 0 80px;
-            background: radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.08) 0%, rgba(7, 10, 13, 1) 70%);
+            background: radial-gradient(circle at 70% 30%, rgba(78, 161, 255, 0.14) 0%, rgba(5, 11, 18, 1) 70%);
             min-height: 90vh;
             display: flex;
             align-items: center;
         }
         .hero-content { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
-        .hero-text h3 { font-size: 14px; color: var(--accent-gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+        .hero-text h3 { font-size: 14px; color: var(--accent-blue); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
         .hero-text h1 { font-family: var(--font-title); font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.15; margin-bottom: 20px; color: #fff; }
         .hero-text p { color: var(--text-muted); margin-bottom: 30px; font-size: 15px; }
         .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
 
         /* --- SECTION TITLES --- */
         .section-title { text-align: center; margin-bottom: 45px; }
-        .section-title h3 { font-size: 12px; color: var(--accent-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+        .section-title h3 { font-size: 12px; color: var(--accent-blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
         .section-title h2 { font-family: var(--font-title); font-size: clamp(1.8rem, 4vw, 2.4rem); color: #fff; }
         .section-title p { color: var(--text-muted); font-size: 14px; max-width: 550px; margin: 10px auto 0; }
 
@@ -156,7 +157,7 @@
         .gem-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 15px; }
 
         /* --- EXCURSION & ORIGIN --- */
-        .origin-section { padding: 80px 0; background: #0b1117; border-y: 1px solid rgba(212, 175, 55, 0.1); }
+        .origin-section { padding: 80px 0; background: #0a131b; border-y: 1px solid rgba(78, 161, 255, 0.12); }
         .origin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
         .origin-text h2 { font-family: var(--font-title); font-size: 2rem; margin-bottom: 15px; }
         .origin-text p { color: var(--text-muted); margin-bottom: 20px; font-size: 14px; }
@@ -167,11 +168,11 @@
         /* --- GEM CATALOG / PROFILE GRID --- */
         .catalog { padding: 80px 0; }
         .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .profile-card { background: var(--bg-card); border-radius: 16px; padding: 20px; border: 1px solid rgba(212, 175, 55, 0.15); display: flex; flex-direction: column; justify-content: space-between; }
+        .profile-card { background: var(--bg-card); border-radius: 16px; padding: 20px; border: 1px solid rgba(78, 161, 255, 0.15); display: flex; flex-direction: column; justify-content: space-between; }
         .profile-card .img-placeholder { height: 200px; margin-bottom: 15px; }
         .profile-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
         .profile-title { font-family: var(--font-title); font-size: 18px; color: #fff; }
-        .rarity-tag { font-size: 11px; background: rgba(212, 175, 55, 0.15); color: var(--accent-gold); padding: 3px 10px; border-radius: 12px; font-weight: 500; }
+        .rarity-tag { font-size: 11px; background: rgba(78, 161, 255, 0.12); color: var(--accent-blue); padding: 3px 10px; border-radius: 12px; font-weight: 500; }
         .profile-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
         
         /* Specs table inside gem profile */
@@ -182,18 +183,18 @@
         .spec-value { color: #fff; font-weight: 500; }
 
         /* --- GEMOLOGY GUIDE --- */
-        .guide { padding: 60px 0; background: #0b1117; }
+        .guide { padding: 60px 0; background: #0a131b; }
         .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
         .guide-box { background: var(--bg-card); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-        .guide-box i { font-size: 28px; color: var(--accent-gold); margin-bottom: 15px; }
+        .guide-box i { font-size: 28px; color: var(--accent-blue); margin-bottom: 15px; }
         .guide-box h4 { font-family: var(--font-title); margin-bottom: 8px; font-size: 16px; }
         .guide-box p { font-size: 12px; color: var(--text-muted); }
 
         /* --- STATS SECTION --- */
         .stats-section { padding: 60px 0; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 20px; background: var(--bg-card); padding: 35px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 20px; background: var(--bg-card); padding: 35px; border-radius: 20px; border: 1px solid rgba(78, 161, 255, 0.2); }
         .stat-box { background: rgba(0,0,0,0.3); padding: 25px; border-radius: 12px; text-align: center; }
-        .stat-box h2 { font-family: var(--font-title); font-size: 34px; color: var(--accent-gold); }
+        .stat-box h2 { font-family: var(--font-title); font-size: 34px; color: var(--accent-blue); }
         .stat-box p { font-size: 12px; color: var(--text-muted); }
 
         /* --- FAQ SECTION --- */
@@ -203,14 +204,14 @@
         .faq-question { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 500; }
         .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s ease; color: var(--text-muted); font-size: 13px; line-height: 1.6; }
         .faq-item.active .faq-answer { padding: 0 20px 18px; max-height: 250px; }
-        .faq-item.active .faq-question i { transform: rotate(180deg); color: var(--accent-gold); }
+        .faq-item.active .faq-question i { transform: rotate(180deg); color: var(--accent-blue); }
 
         /* --- FLOATING WHATSAPP BUTTON --- */
         .floating-whatsapp {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background-color: var(--accent-green);
+            background-color: var(--accent-blue);
             color: #fff;
             width: 60px;
             height: 60px;
@@ -219,16 +220,16 @@
             align-items: center;
             justify-content: center;
             font-size: 30px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 15px rgba(78, 161, 255, 0.45);
             z-index: 999;
             transition: 0.3s;
         }
         .floating-whatsapp:hover { transform: scale(1.1); }
 
         /* --- FOOTER --- */
-        footer { background: #030507; padding: 60px 0 20px; border-top: 1px solid rgba(212, 175, 55, 0.15); }
+        footer { background: #03080d; padding: 60px 0 20px; border-top: 1px solid rgba(78, 161, 255, 0.15); }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 40px; }
-        .footer-col h4 { font-family: var(--font-title); color: var(--accent-gold); margin-bottom: 15px; font-size: 16px; }
+        .footer-col h4 { font-family: var(--font-title); color: var(--accent-blue); margin-bottom: 15px; font-size: 16px; }
         .footer-col p, .footer-col ul li a { color: var(--text-muted); font-size: 13px; margin-bottom: 10px; display: block; }
         .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 12px; }
 
@@ -307,7 +308,7 @@
             <div class="hero-text">
                 <h3>Authentic Sri Lankan Gemstones</h3>
                 <h1>Treasures From The Island of Gems</h1>
-                <p>Discover Sri Lanka’s legendary gemstones—from world-renowned Ceylon Blue Sapphires to ultra-rare Padparadscha and Chrysoberyl Cat’s Eyes. We provide comprehensive gemological insights and direct access to ethical Sri Lankan distributors.</p>
+                <p>Discover Sri Lanka’s legendary gemstones—from world-renowned Ceylon Blue Sapphires to ultra-rare Padparadscha and Chrysoberyl Cat’s Eyes. We provide comprehensive gemological guidance, certification support, and direct sourcing from trusted regional suppliers.</p>
                 <div class="hero-buttons">
                     <a href="#catalog" class="btn">Explore Gem Directory</a>
                     <a href="#" id="heroWaBtn" target="_blank" class="btn-outline">
@@ -393,8 +394,8 @@
         <div class="container origin-grid">
             <div class="origin-text">
                 <h2>The Heritage of Ratnapura & Alluvial Mining</h2>
-                <p>Sri Lanka (formerly Ceylon) is nicknamed <em>Rathnadeepa</em>—"The Island of Gems". For over 2,500 years, ethical traditional mining techniques have preserved gem deposits in alluvial gravels ("Illam") beneath the valleys of Ratnapura.</p>
-                <p>Unlike heavy industrial open-pit mining, Sri Lankan gem extraction utilizes sustainable shaft mining and hand washing to protect local ecosystems while uncovering world-renowned untreated corundum.</p>
+                <p>Sri Lanka (formerly Ceylon) is nicknamed <em>Rathnadeepa</em>—"The Island of Gems". For over 2,500 years, ethical traditional mining techniques have preserved gem deposits in alluvial riverbeds and ancient gravels.</p>
+                <p>Unlike heavy industrial open-pit mining, Sri Lankan gem extraction utilizes sustainable shaft mining and hand washing to protect local ecosystems while uncovering world-renowned untreated gems.</p>
                 <a href="#catalog" class="btn-outline" style="margin-top: 10px;">View Certified Varieties</a>
             </div>
 
@@ -625,7 +626,7 @@
             </div>
             <div class="stats-text">
                 <h3 style="font-family: var(--font-title); font-size: 20px; color: #fff; margin-bottom: 8px;">100% Certified Direct Access</h3>
-                <p style="color: var(--text-muted); font-size: 13px;">Skip middlemen and directly connect with licensed Sri Lankan gem distributors. Request custom lab reports, high-definition videos, or stone viewings.</p>
+                <p style="color: var(--text-muted); font-size: 13px;">Skip middlemen and directly connect with licensed Sri Lankan gem distributors. Request custom lab reports, high-definition videos, and export guidance anytime.</p>
             </div>
         </div>
     </section>
@@ -642,15 +643,15 @@
             <div class="faq-list">
                 <div class="faq-item active">
                     <div class="faq-question">How do I verify the authenticity of a gemstone? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">Every genuine Sri Lankan gemstone can be certified by government-accredited laboratories like the National Gem & Jewellery Authority (NGJA) of Sri Lanka or international labs (GIA, GRS, CGL).</div>
+                    <div class="faq-answer">Every genuine Sri Lankan gemstone can be certified by government-accredited laboratories like the National Gem & Jewellery Authority (NGJA) of Sri Lanka or independent GIA/GRS facilities.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">How does buying via WhatsApp work? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">When you click "Inquire", you will be connected directly to our Sri Lankan gem distributor via WhatsApp. You can request 360° videos under natural light, exact dimensions, weight, and certification details.</div>
+                    <div class="faq-answer">When you click "Inquire", you will be connected directly to our Sri Lankan gem distributor via WhatsApp. You can request 360° videos under natural light, certification details, and pricing information instantly.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">What is the difference between Heated and Unheated Sapphires? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">Unheated sapphires are 100% natural, as taken from the earth without thermal treatment. Heated sapphires undergo traditional gentle heating to improve clarity/color. Unheated Ceylon sapphires carry a higher premium for rarity.</div>
+                    <div class="faq-answer">Unheated sapphires are 100% natural, as taken from the earth without thermal treatment. Heated sapphires undergo traditional gentle heating to improve clarity and color consistency.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Can gemstones be legally exported from Sri Lanka? <i class="fa-solid fa-chevron-down"></i></div>
