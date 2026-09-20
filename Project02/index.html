@@ -1,777 +1,1997 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ceylon Gems Vault | Sri Lankan Gemstone Heritage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* --- VARIABLES & BASE STYLES --- */
-        :root {
-            --bg-main: #050b12;       /* Midnight Black */
-            --bg-card: #0d1b2a;       /* Deep Ocean Blue */
-            --accent-blue: #4ea1ff;   /* Electric Blue */
-            --accent-blue-deep: #0d6efd;
-            --accent-green: #25d366;    /* WhatsApp Green */
-            --text-main: #ffffff;
-            --text-muted: #b7c7d9;
-            --font-title: 'Cinzel', serif;
-            --font-body: 'Poppins', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ceylon Gems Vault | Sri Lankan Gemstone Heritage</title>
+  <meta name="description" content="Authentic Sri Lankan gemstones — Ceylon Blue Sapphire, Padparadscha, Alexandrite, Cat's Eye, Moonstone and Spinel. Ethically sourced from Ratnapura with NGJA certification support.">
+  <meta name="theme-color" content="#050b12">
+  <link rel="canonical" href="https://www.example.com/">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html { scroll-behavior: smooth; }
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ceylon Gem Vault">
+  <meta property="og:title" content="Ceylon Gems Vault | Sri Lankan Gemstone Heritage">
+  <meta property="og:description" content="Discover authentic Ceylon sapphires, padparadscha, alexandrite and more — direct from licensed Sri Lankan distributors.">
+  <meta property="og:url" content="https://www.example.com/">
+  <meta property="og:image" content="https://www.example.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-        body {
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  <style>
+    /* ============================================================
+       TOKENS
+       ============================================================ */
+    :root {
+      --bg-main: #050b12;
+      --bg-card: #0d1b2a;
+      --bg-alt: #0a131b;
+      --accent-blue: #4ea1ff;
+      --accent-blue-deep: #0d6efd;
+      --text-main: #ffffff;
+      --text-muted: #b7c7d9;
+      --line: rgba(255, 255, 255, 0.05);
+      --line-blue: rgba(78, 161, 255, 0.15);
+      --font-title: 'Cinzel', serif;
+      --font-body: 'Poppins', sans-serif;
+      --header-h: 94px;
+    }
 
-        /* --- BUTTONS --- */
-        .btn {
-            background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
-            color: #fff;
-            padding: 12px 26px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: 0.3s ease;
-            font-size: 14px;
-        }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(78, 161, 255, 0.35); }
+    /* ============================================================
+       BASE
+       ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .btn-whatsapp {
-            background-color: var(--accent-blue);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-        .btn-whatsapp:hover { background-color: var(--accent-blue-deep); transform: translateY(-2px); }
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
 
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--accent-blue);
-            color: var(--accent-blue);
-            border-radius: 30px;
-            padding: 12px 26px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-        .btn-outline:hover { background: rgba(78, 161, 255, 0.1); }
+    html.no-scroll,
+    html.no-scroll body { overflow: hidden; }
 
-        /* --- IMAGE PLACEHOLDER BOXES --- */
-        .img-placeholder {
-            width: 100%;
-            height: 100%;
-            min-height: 200px;
-            background: linear-gradient(135deg, #14263a, #09141d);
-            border: 1px dashed rgba(78, 161, 255, 0.35);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 13px;
-            text-align: center;
-            padding: 15px;
-        }
-        .img-placeholder i { font-size: 32px; color: var(--accent-blue); margin-bottom: 8px; opacity: 0.8; }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        /* --- NAVBAR --- */
-        header { 
-            padding: 18px 0; 
-            position: fixed; 
-            top: 0; left: 0; width: 100%; 
-            z-index: 1000; 
-            background: rgba(5, 11, 18, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(78, 161, 255, 0.15);
-        }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-title); font-size: 22px; font-weight: 700; color: var(--accent-blue); letter-spacing: 1px; }
-        .logo span { color: #fff; font-size: 14px; display: block; font-family: var(--font-body); font-weight: 300; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
 
-        .nav-links { display: flex; gap: 25px; align-items: center; }
-        .nav-links li a { font-size: 14px; color: var(--text-muted); transition: 0.3s; }
-        .nav-links li a:hover, .nav-links li a.active { color: var(--accent-blue); }
+    :focus-visible {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
 
-        .hamburger { display: none; font-size: 22px; color: var(--accent-blue); cursor: pointer; }
+    [id] { scroll-margin-top: calc(var(--header-h) + 16px); }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 150px 0 80px;
-            background: radial-gradient(circle at 70% 30%, rgba(78, 161, 255, 0.14) 0%, rgba(5, 11, 18, 1) 70%);
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-        }
-        .hero-content { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
-        .hero-text h3 { font-size: 14px; color: var(--accent-blue); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
-        .hero-text h1 { font-family: var(--font-title); font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.15; margin-bottom: 20px; color: #fff; }
-        .hero-text p { color: var(--text-muted); margin-bottom: 30px; font-size: 15px; }
-        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
 
-        /* --- SECTION TITLES --- */
-        .section-title { text-align: center; margin-bottom: 45px; }
-        .section-title h3 { font-size: 12px; color: var(--accent-blue); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-        .section-title h2 { font-family: var(--font-title); font-size: clamp(1.8rem, 4vw, 2.4rem); color: #fff; }
-        .section-title p { color: var(--text-muted); font-size: 14px; max-width: 550px; margin: 10px auto 0; }
+    /* ============================================================
+       SKIP LINK
+       ============================================================ */
+    .skip-link {
+      position: fixed;
+      top: -80px;
+      left: 20px;
+      z-index: 2000;
+      background: var(--accent-blue);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 0 0 8px 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 0; }
 
-        /* --- FEATURED GEMS SLIDER / CARDS --- */
-        .featured-gems { padding: 80px 0; }
-        .gem-slider { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px; scrollbar-width: none; }
-        .gem-slider::-webkit-scrollbar { display: none; }
-        .gem-card { min-width: 270px; background: var(--bg-card); border-radius: 15px; padding: 15px; border: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; }
-        .gem-card .img-placeholder { height: 220px; margin-bottom: 15px; }
-        .gem-card h4 { font-family: var(--font-title); font-size: 18px; margin-bottom: 5px; color: #fff; }
-        .gem-card p { font-size: 12px; color: var(--text-muted); margin-bottom: 15px; }
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
+      color: #fff;
+      padding: 12px 26px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: 14px;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(78, 161, 255, 0.35);
+    }
 
-        /* --- EXCURSION & ORIGIN --- */
-        .origin-section { padding: 80px 0; background: #0a131b; border-y: 1px solid rgba(78, 161, 255, 0.12); }
-        .origin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .origin-text h2 { font-family: var(--font-title); font-size: 2rem; margin-bottom: 15px; }
-        .origin-text p { color: var(--text-muted); margin-bottom: 20px; font-size: 14px; }
-        .origin-images { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .origin-images .img-placeholder { min-height: 160px; }
-        .origin-images .img-placeholder:first-child { grid-row: span 2; min-height: 335px; }
+    .btn-whatsapp {
+      background-color: var(--accent-blue);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 500;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .btn-whatsapp:hover {
+      background-color: var(--accent-blue-deep);
+      transform: translateY(-2px);
+    }
 
-        /* --- GEM CATALOG / PROFILE GRID --- */
-        .catalog { padding: 80px 0; }
-        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
-        .profile-card { background: var(--bg-card); border-radius: 16px; padding: 20px; border: 1px solid rgba(78, 161, 255, 0.15); display: flex; flex-direction: column; justify-content: space-between; }
-        .profile-card .img-placeholder { height: 200px; margin-bottom: 15px; }
-        .profile-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-        .profile-title { font-family: var(--font-title); font-size: 18px; color: #fff; }
-        .rarity-tag { font-size: 11px; background: rgba(78, 161, 255, 0.12); color: var(--accent-blue); padding: 3px 10px; border-radius: 12px; font-weight: 500; }
-        .profile-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
-        
-        /* Specs table inside gem profile */
-        .gem-specs { background: rgba(0,0,0,0.3); padding: 12px; border-radius: 10px; margin-bottom: 20px; font-size: 12px; }
-        .spec-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); }
-        .spec-row:last-child { border-bottom: none; }
-        .spec-label { color: var(--text-muted); }
-        .spec-value { color: #fff; font-weight: 500; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--accent-blue);
+      color: var(--accent-blue);
+      border-radius: 30px;
+      padding: 12px 26px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-outline:hover { background: rgba(78, 161, 255, 0.1); }
 
-        /* --- GEMOLOGY GUIDE --- */
-        .guide { padding: 60px 0; background: #0a131b; }
-        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-        .guide-box { background: var(--bg-card); padding: 25px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
-        .guide-box i { font-size: 28px; color: var(--accent-blue); margin-bottom: 15px; }
-        .guide-box h4 { font-family: var(--font-title); margin-bottom: 8px; font-size: 16px; }
-        .guide-box p { font-size: 12px; color: var(--text-muted); }
+    /* ============================================================
+       IMAGE PLACEHOLDERS
+       ============================================================ */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      background: linear-gradient(135deg, #14263a, #09141d);
+      border: 1px dashed rgba(78, 161, 255, 0.35);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 15px;
+      gap: 4px;
+      position: relative;
+    }
+    .img-placeholder i {
+      font-size: 32px;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
 
-        /* --- STATS SECTION --- */
-        .stats-section { padding: 60px 0; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 20px; background: var(--bg-card); padding: 35px; border-radius: 20px; border: 1px solid rgba(78, 161, 255, 0.2); }
-        .stat-box { background: rgba(0,0,0,0.3); padding: 25px; border-radius: 12px; text-align: center; }
-        .stat-box h2 { font-family: var(--font-title); font-size: 34px; color: var(--accent-blue); }
-        .stat-box p { font-size: 12px; color: var(--text-muted); }
+    /* Zoom affordance on clickable media */
+    .gem-card .img-placeholder,
+    .profile-card .img-placeholder,
+    .gem-card > img,
+    .profile-card img {
+      cursor: zoom-in;
+    }
 
-        /* --- FAQ SECTION --- */
-        .faq { padding: 80px 0; }
-        .faq-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-        .faq-item { background: var(--bg-card); margin-bottom: 12px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
-        .faq-question { padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 500; }
-        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s ease; color: var(--text-muted); font-size: 13px; line-height: 1.6; }
-        .faq-item.active .faq-answer { padding: 0 20px 18px; max-height: 250px; }
-        .faq-item.active .faq-question i { transform: rotate(180deg); color: var(--accent-blue); }
+    .gem-card .img-placeholder::after,
+    .profile-card .img-placeholder::after {
+      content: '\f00e'; /* Font Awesome magnifying glass */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(5, 11, 18, 0.75);
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .gem-card .img-placeholder:hover::after,
+    .profile-card .img-placeholder:hover::after {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-        /* --- FLOATING WHATSAPP BUTTON --- */
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: var(--accent-blue);
-            color: #fff;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 15px rgba(78, 161, 255, 0.45);
-            z-index: 999;
-            transition: 0.3s;
-        }
-        .floating-whatsapp:hover { transform: scale(1.1); }
+    /* ============================================================
+       HEADER / NAV
+       ============================================================ */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 18px 0;
+      background: rgba(5, 11, 18, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line-blue);
+    }
 
-        /* --- FOOTER --- */
-        footer { background: #03080d; padding: 60px 0 20px; border-top: 1px solid rgba(78, 161, 255, 0.15); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 40px; }
-        .footer-col h4 { font-family: var(--font-title); color: var(--accent-blue); margin-bottom: 15px; font-size: 16px; }
-        .footer-col p, .footer-col ul li a { color: var(--text-muted); font-size: 13px; margin-bottom: 10px; display: block; }
-        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 12px; }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
 
-        /* --- MOBILE MEDIA QUERIES --- */
-        @media (max-width: 992px) {
-            .hero-content, .origin-grid, .faq-container { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .stats-text { grid-column: span 2; }
-        }
+    .logo {
+      font-family: var(--font-title);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+    .logo span {
+      color: #fff;
+      font-size: 13px;
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
 
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            .nav-links {
-                position: fixed;
-                top: 65px; left: -100%;
-                width: 100%; height: calc(100vh - 65px);
-                background: var(--bg-main);
-                flex-direction: column;
-                justify-content: flex-start;
-                padding: 40px 20px;
-                gap: 25px;
-                transition: 0.3s ease-in-out;
-            }
-            .nav-links.active { left: 0; }
-            .nav-links li a { font-size: 16px; }
-            .origin-images { grid-template-columns: 1fr; }
-            .origin-images .img-placeholder:first-child { grid-row: auto; min-height: 200px; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .stats-text { grid-column: span 1; }
-        }
-    </style>
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+    .nav-links li a {
+      font-size: 14px;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+    .nav-links li a:hover,
+    .nav-links li a.active { color: var(--accent-blue); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: 0;
+      font-size: 22px;
+      color: var(--accent-blue);
+      cursor: pointer;
+      padding: 8px;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      padding: 150px 0 80px;
+      background: radial-gradient(circle at 70% 30%, rgba(78, 161, 255, 0.14) 0%, rgba(5, 11, 18, 1) 70%);
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .eyebrow {
+      font-size: 12px;
+      color: var(--accent-blue);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .hero-text h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .hero-text p {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+    .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+
+    /* Trust badges under hero buttons */
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      margin-top: 28px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+    .trust-badges span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .trust-badges i {
+      color: var(--accent-blue);
+      font-size: 13px;
+    }
+
+    /* ============================================================
+       SECTION TITLES
+       ============================================================ */
+    .section-title { text-align: center; margin-bottom: 45px; }
+    .section-title .eyebrow { margin-bottom: 8px; }
+    .section-title h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: #fff;
+      line-height: 1.25;
+    }
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 550px;
+      margin: 10px auto 0;
+    }
+
+    /* ============================================================
+       FEATURED GEMS SLIDER
+       ============================================================ */
+    .featured-gems { padding: 80px 0; }
+
+    .gem-slider {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .gem-slider::-webkit-scrollbar { display: none; }
+
+    .gem-card {
+      flex: 0 0 285px;      
+      width: 300px;
+      min-width: 0;
+      background: var(--bg-card);
+      border-radius: 15px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+    }
+    .gem-card .img-placeholder { height: 220px; margin-bottom: 15px; }
+    .gem-card h3 {
+      font-family: var(--font-title);
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+    .gem-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      flex: 1;
+    }
+    .gem-card .btn-whatsapp { width: 100%; margin-top: auto; }
+
+    /* Hover lift for cards */
+    .gem-card,
+    .profile-card {
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .gem-card:hover,
+    .profile-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(78, 161, 255, 0.4);
+      box-shadow: 0 14px 34px rgba(78, 161, 255, 0.14);
+    }
+
+    /* ============================================================
+       ORIGIN & HERITAGE
+       ============================================================ */
+    .origin-section {
+      padding: 80px 0;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--line-blue);
+      border-bottom: 1px solid var(--line-blue);
+    }
+    .origin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .origin-text h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.6rem, 3.5vw, 2rem);
+      margin-bottom: 15px;
+      line-height: 1.25;
+    }
+    .origin-text p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    .origin-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .origin-images .img-placeholder { min-height: 160px; }
+    .origin-images .img-placeholder:first-child {
+      grid-row: span 2;
+      min-height: 335px;
+    }
+
+    /* ============================================================
+       CATALOG
+       ============================================================ */
+    .catalog { padding: 80px 0; }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+      gap: 30px;
+    }
+
+    .profile-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--line-blue);
+      display: flex;
+      flex-direction: column;
+    }
+    .profile-card .img-placeholder { height: 200px; margin-bottom: 15px; }
+
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .profile-title {
+      font-family: var(--font-title);
+      font-size: 18px;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .rarity-tag {
+      font-size: 11px;
+      background: rgba(78, 161, 255, 0.12);
+      color: var(--accent-blue);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .profile-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+
+    .gem-specs {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 12px;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { color: var(--text-muted); flex: 0 0 auto; }
+    .spec-value {
+      color: #fff;
+      font-weight: 500;
+      text-align: right;
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    /* Button pinned to bottom so cards align in a row */
+    .profile-card > .btn-whatsapp {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    /* ============================================================
+       GEMOLOGY GUIDE
+       ============================================================ */
+    .guide { padding: 60px 0; background: var(--bg-alt); }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 20px;
+    }
+    .guide-box {
+      background: var(--bg-card);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid var(--line);
+    }
+    .guide-box i {
+      font-size: 28px;
+      color: var(--accent-blue);
+      margin-bottom: 15px;
+    }
+    .guide-box h3 {
+      font-family: var(--font-title);
+      margin-bottom: 8px;
+      font-size: 16px;
+      color: #fff;
+    }
+    .guide-box p { font-size: 12px; color: var(--text-muted); }
+
+    /* ============================================================
+       STATS
+       ============================================================ */
+    .stats-section { padding: 60px 0; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr;
+      gap: 20px;
+      background: var(--bg-card);
+      padding: 35px;
+      border-radius: 20px;
+      border: 1px solid rgba(78, 161, 255, 0.2);
+    }
+    .stat-box {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--font-title);
+      font-size: 34px;
+      line-height: 1.2;
+      color: var(--accent-blue);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-label { font-size: 12px; color: var(--text-muted); }
+    .stats-heading {
+      font-family: var(--font-title);
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .stats-text p { color: var(--text-muted); font-size: 13px; }
+
+    /* ============================================================
+       TESTIMONIALS  (NEW)
+       ============================================================ */
+    .testimonials {
+      padding: 70px 0 80px;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--line-blue);
+      border-bottom: 1px solid var(--line-blue);
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: 24px;
+    }
+    .testimonial {
+      background: var(--bg-card);
+      border: 1px solid var(--line-blue);
+      border-radius: 16px;
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .testimonial:hover {
+      transform: translateY(-4px);
+      border-color: rgba(78, 161, 255, 0.35);
+      box-shadow: 0 12px 30px rgba(78, 161, 255, 0.12);
+    }
+    .testimonial::before {
+      content: '\201C'; /* opening curly quote */
+      position: absolute;
+      top: 8px;
+      left: 18px;
+      font-family: var(--font-title);
+      font-size: 54px;
+      line-height: 1;
+      color: rgba(78, 161, 255, 0.22);
+      pointer-events: none;
+    }
+    .testimonial p {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.06);
+    }
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .testimonial-meta strong {
+      display: block;
+      color: #fff;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+    .testimonial-meta span {
+      display: block;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .testimonial-stars {
+      color: #ffc55c;
+      font-size: 11px;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       FAQ
+       ============================================================ */
+    .faq { padding: 80px 0; }
+    .faq-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      margin-bottom: 12px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .faq-heading { font-size: inherit; font-weight: inherit; }
+    .faq-question {
+      width: 100%;
+      padding: 18px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-main);
+      background: none;
+      border: 0;
+      text-align: left;
+    }
+    .faq-question i {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+      color: var(--accent-blue);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.active .faq-answer { max-height: 400px; }
+    .faq-answer p {
+      padding: 0 20px 18px;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       FLOATING WHATSAPP BUTTON
+       ============================================================ */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: var(--accent-blue);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 4px 15px rgba(78, 161, 255, 0.45);
+      z-index: 999;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .floating-whatsapp:hover {
+      transform: scale(1.1);
+      background-color: var(--accent-blue-deep);
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+      background: #03080d;
+      padding: 60px 0 20px;
+      border-top: 1px solid var(--line-blue);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    .footer-col h3 {
+      font-family: var(--font-title);
+      color: var(--accent-blue);
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+    .footer-col p,
+    .footer-col ul li a {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .footer-col ul li a:hover { color: var(--accent-blue); }
+    .footer-col i { color: var(--accent-blue); width: 18px; }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* ============================================================
+       LIGHTBOX  (NEW)
+       ============================================================ */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(3, 8, 13, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 40px;
+      animation: lightboxFade 0.25s ease;
+    }
+    .lightbox[hidden] { display: none; }
+
+    @keyframes lightboxFade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .lightbox-body {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .lightbox-body img {
+      width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      border-radius: 16px;
+      border: 1px solid var(--line-blue);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    }
+    .lightbox-body .img-placeholder {
+      width: 100%;
+      min-height: 55vh;
+      font-size: 15px;
+    }
+    .lightbox-body .img-placeholder i { font-size: 60px; }
+
+    .lightbox-caption {
+      color: #fff;
+      font-family: var(--font-title);
+      font-size: 20px;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    .lightbox-hint {
+      color: var(--text-muted);
+      font-size: 12px;
+      text-align: center;
+      margin-top: -8px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(13, 27, 42, 0.7);
+      border: 1px solid var(--line-blue);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .lightbox-close:hover {
+      background: var(--bg-card);
+      transform: rotate(90deg);
+    }
+
+    /* ============================================================
+       REVEAL ON SCROLL
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 992px) {
+      .hero-content,
+      .origin-grid,
+      .faq-container { grid-template-columns: 1fr; }
+
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stats-text { grid-column: span 2; }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 100%);
+        height: calc(100dvh - 100%);
+        overflow-y: auto;
+        background: var(--bg-main);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 30px 20px 60px;
+        gap: 22px;
+        border-top: 1px solid var(--line-blue);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      }
+      .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .nav-links > li { width: 100%; }
+      .nav-links > li > a:not(.btn-whatsapp) {
+        display: block;
+        font-size: 16px;
+        padding: 6px 0;
+      }
+
+      .origin-images { grid-template-columns: 1fr; }
+      .origin-images .img-placeholder:first-child {
+        grid-row: auto;
+        min-height: 200px;
+      }
+
+      .stats-grid { grid-template-columns: 1fr; padding: 25px; }
+      .stats-text { grid-column: span 1; }
+
+      .floating-whatsapp {
+        width: 54px;
+        height: 54px;
+        font-size: 26px;
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .lightbox { padding: 50px 14px 30px; }
+      .lightbox-body .img-placeholder { min-height: 40vh; }
+    }
+
+    @media (max-width: 400px) {
+      .logo { font-size: 18px; }
+      .logo span { font-size: 11px; }
+      .hero { padding-top: 130px; }
+      .trust-badges { font-size: 11.5px; gap: 8px 16px; }
+    }
+
+    /* ============================================================
+       REDUCED MOTION
+       ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ============================================================
+   GEM IMAGE STYLES
+   ============================================================ */
+.gem-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  background: linear-gradient(135deg, #14263a, #09141d);
+}
+
+/* Fixed heights per context */
+.hero .gem-img                    { min-height: 350px; height: 100%; }
+.gem-card .gem-img                { height: 220px; margin-bottom: 15px; }
+.profile-card .gem-img            { height: 200px; margin-bottom: 15px; }
+.origin-images .gem-img           { min-height: 160px; height: 100%; }
+.origin-images .gem-img:first-child { min-height: 335px; }
+.faq-container > .gem-img         { min-height: 380px; height: 100%; }
+
+/* Zoom affordance */
+.gem-card .gem-img,
+.profile-card .gem-img {
+  cursor: zoom-in;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+.gem-card:hover .gem-img,
+.profile-card:hover .gem-img { filter: brightness(1.08); }
+
+@media (max-width: 768px) {
+  .origin-images .gem-img:first-child { min-height: 200px; }
+  .hero .gem-img { min-height: 260px; }
+}
+  </style>
 </head>
+
 <body>
 
-    <!-- SET YOUR WHATSAPP PHONE NUMBER HERE -->
-    <script>
-        const DISTRIBUTOR_WHATSAPP = "+94766609974"; // <-- REPLACE WITH YOUR PHONE NUMBER
-    </script>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
-    <!-- FLOATING WHATSAPP BUTTON -->
-    <a href="#" id="floatingWaBtn" target="_blank" class="floating-whatsapp" title="Direct WhatsApp Inquiry">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a
+    href="https://wa.me/94766609974"
+    data-wa="default"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="floating-whatsapp"
+    aria-label="Chat with the gem distributor on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
 
-    <!-- NAVBAR -->
-    <header>
-        <div class="container nav-container">
-            <a href="#home" class="logo">
-                CEYLON GEM VAULT
-                <span>Ratnapura • Sri Lanka</span>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#home" class="logo">
+        CEYLON GEM VAULT
+        <span>Ratnapura • Sri Lanka</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#featured">Featured Gems</a></li>
+          <li><a href="#origin">Origins &amp; History</a></li>
+          <li><a href="#catalog">Gem Directory</a></li>
+          <li><a href="#guide">4Cs Guide</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li>
+            <a
+              href="https://wa.me/94766609974"
+              data-wa="default"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-whatsapp">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Direct Distributor
             </a>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#featured">Featured Gems</a></li>
-                <li><a href="#origin">Origins & History</a></li>
-                <li><a href="#catalog">Gem Directory</a></li>
-                <li><a href="#guide">4Cs Guide</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li>
-                    <a href="#" id="navWaBtn" target="_blank" class="btn-whatsapp" style="margin-top: 5px;">
-                        <i class="fa-brands fa-whatsapp"></i> Direct Distributor
-                    </a>
-                </li>
-            </ul>
+          </li>
+        </ul>
+      </nav>
 
-            <div class="hamburger" id="hamburger">
-                <i class="fa-solid fa-bars"></i>
-            </div>
+      <button
+        class="hamburger"
+        id="hamburger"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <p class="eyebrow">Authentic Sri Lankan Gemstones</p>
+          <h1 id="hero-heading">Treasures From The Island of Gems</h1>
+          <p>Discover Sri Lanka’s legendary gemstones—from world-renowned Ceylon Blue Sapphires to ultra-rare Padparadscha and Chrysoberyl Cat’s Eyes. We provide comprehensive gemological guidance, certification support, and direct sourcing from trusted regional suppliers.</p>
+          <div class="hero-buttons">
+            <a href="#catalog" class="btn">Explore Gem Directory</a>
+            <a
+              href="https://wa.me/94766609974"
+              data-wa="default"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-outline">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Contact Distributor
+            </a>
+          </div>
+
+          <!-- Trust badges -->
+          <ul class="trust-badges" aria-label="Trust and credibility signals">
+            <li><span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> NGJA Approved Dealer</span></li>
+            <li><span><i class="fa-solid fa-certificate" aria-hidden="true"></i> GIA / GRS Reports Available</span></li>
+            <li><span><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Insured Worldwide Shipping</span></li>
+            <li><span><i class="fa-solid fa-gem" aria-hidden="true"></i> 100% Natural, Earth-Mined</span></li>
+          </ul>
         </div>
-    </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <div class="hero-text">
-                <h3>Authentic Sri Lankan Gemstones</h3>
-                <h1>Treasures From The Island of Gems</h1>
-                <p>Discover Sri Lanka’s legendary gemstones—from world-renowned Ceylon Blue Sapphires to ultra-rare Padparadscha and Chrysoberyl Cat’s Eyes. We provide comprehensive gemological guidance, certification support, and direct sourcing from trusted regional suppliers.</p>
-                <div class="hero-buttons">
-                    <a href="#catalog" class="btn">Explore Gem Directory</a>
-                    <a href="#" id="heroWaBtn" target="_blank" class="btn-outline">
-                        <i class="fa-brands fa-whatsapp"></i> Contact Distributor
-                    </a>
-                </div>
-            </div>
-
-            <!-- Replace this placeholder with your featured Hero Gem image -->
-            <div class="img-placeholder" style="min-height: 350px;">
-                <i class="fa-solid fa-gem"></i>
-                <p><strong>[ Insert Hero Gemstone Image ]</strong></p>
-                <p>e.g. Royal Blue Ceylon Sapphire Cut Gem</p>
-            </div>
-        </div>
+        <img
+        class="gem-img"
+        src="images/Ceylon%20Royal%20Blue%20Sapphire.webp"
+        alt="Faceted Ceylon royal blue sapphire gemstone"
+        width="900" height="700"
+        loading="eager"
+        fetchpriority="high">
+      </div>
     </section>
 
-    <!-- FEATURED GEMS SLIDER -->
-    <section class="featured-gems container" id="featured">
-        <div class="section-title">
-            <h3>Finest Ceylon Specimens</h3>
-            <h2>World Famous Sri Lankan Gemstones</h2>
-            <p>Sri Lanka produces over 75 of the world's 200 gemstone varieties in exceptional clarity and brilliance.</p>
-        </div>
+    <!-- FEATURED GEMS -->
+    <section class="featured-gems container" id="featured" aria-labelledby="featured-heading">
+      <div class="section-title">
+        <p class="eyebrow">Finest Ceylon Specimens</p>
+        <h2 id="featured-heading">World Famous Sri Lankan Gemstones</h2>
+        <p>Sri Lanka produces over 75 of the world's 200 gemstone varieties in exceptional clarity and brilliance.</p>
+      </div>
 
-        <div class="gem-slider">
-            <!-- Card 1 -->
-            <div class="gem-card">
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-gem"></i>
-                    <span>[ Blue Sapphire Image ]</span>
-                </div>
-                <h4>Ceylon Blue Sapphire</h4>
-                <p>Celebrated for its signature vivid cornflower and royal blue hues.</p>
-                <button onclick="inquireGem('Ceylon Blue Sapphire')" class="btn-whatsapp" style="width: 100%; justify-content: center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire Specs
-                </button>
-            </div>
+      <div class="gem-slider" role="region" aria-label="Featured gemstones" tabindex="0">
 
-            <!-- Card 2 -->
-            <div class="gem-card">
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-gem"></i>
-                    <span>[ Padparadscha Image ]</span>
-                </div>
-                <h4>Padparadscha Sapphire</h4>
-                <p>Ultra-rare lotus-colored sapphire blending delicate pink & orange.</p>
-                <button onclick="inquireGem('Padparadscha Sapphire')" class="btn-whatsapp" style="width: 100%; justify-content: center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire Specs
-                </button>
-            </div>
+        <article class="gem-card">
+          <img class="gem-img"
+            src="images/Ceylon%20Royal%20Blue%20Sapphire.webp"
+            alt="Ceylon royal blue sapphire gemstone"
+            loading="lazy">
+          <h3>Ceylon Blue Sapphire</h3>
+          <p>Celebrated for its signature vivid cornflower and royal blue hues.</p>
+          <a href="https://wa.me/94766609974" data-gem="Ceylon Blue Sapphire" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire Specs
+          </a>
+        </article>
 
-            <!-- Card 3 -->
-            <div class="gem-card">
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-gem"></i>
-                    <span>[ Alexandrite Image ]</span>
-                </div>
-                <h4>Ceylon Alexandrite</h4>
-                <p>Remarkable color-changing chrysoberyl: green in daylight, red in tungsten.</p>
-                <button onclick="inquireGem('Ceylon Alexandrite')" class="btn-whatsapp" style="width: 100%; justify-content: center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire Specs
-                </button>
-            </div>
+        <article class="gem-card">
+          <img class="gem-img"
+            src="images/Padparadscha%20Sapphire.webp"
+            alt="Padparadscha sapphire pink and orange gemstone"
+            loading="lazy">
+          <h3>Padparadscha Sapphire</h3>
+          <p>Ultra-rare lotus-colored sapphire blending delicate pink &amp; orange.</p>
+          <a href="https://wa.me/94766609974" data-gem="Padparadscha Sapphire" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire Specs
+          </a>
+        </article>
 
-            <!-- Card 4 -->
-            <div class="gem-card">
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-gem"></i>
-                    <span>[ Cat's Eye Image ]</span>
-                </div>
-                <h4>Chrysoberyl Cat's Eye</h4>
-                <p>Famous for razor-sharp chatoyancy (eye phenomenon) unique to Sri Lanka.</p>
-                <button onclick="inquireGem('Chrysoberyl Cats Eye')" class="btn-whatsapp" style="width: 100%; justify-content: center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire Specs
-                </button>
-            </div>
-        </div>
+        <article class="gem-card">
+          <img class="gem-img"
+            src="images/Ceylon%20Alexandrite.jpg"
+            alt="Ceylon alexandrite colour-change gemstone"
+            loading="lazy">
+          <h3>Ceylon Alexandrite</h3>
+          <p>Remarkable color-changing chrysoberyl: green in daylight, red in tungsten.</p>
+          <a href="https://wa.me/94766609974" data-gem="Ceylon Alexandrite" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire Specs
+          </a>
+        </article>
+
+        <article class="gem-card">
+          <img class="gem-img"
+            src="images/Ceylon%20Star%20Sapphire.webp"
+            alt="Ceylon star sapphire cabochon showing six-ray asterism"
+            loading="lazy">
+          <h3>Ceylon Star Sapphire</h3>
+          <p>Displays a sharp six-ray star (asterism) caused by fine rutile silk inclusions.</p>
+          <a href="https://wa.me/94766609974" data-gem="Ceylon Star Sapphire" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire Specs
+          </a>
+        </article>
+
+      </div>
     </section>
 
     <!-- ORIGIN & HERITAGE -->
-    <section class="origin-section" id="origin">
-        <div class="container origin-grid">
-            <div class="origin-text">
-                <h2>The Heritage of Ratnapura & Alluvial Mining</h2>
-                <p>Sri Lanka (formerly Ceylon) is nicknamed <em>Rathnadeepa</em>—"The Island of Gems". For over 2,500 years, ethical traditional mining techniques have preserved gem deposits in alluvial riverbeds and ancient gravels.</p>
-                <p>Unlike heavy industrial open-pit mining, Sri Lankan gem extraction utilizes sustainable shaft mining and hand washing to protect local ecosystems while uncovering world-renowned untreated gems.</p>
-                <a href="#catalog" class="btn-outline" style="margin-top: 10px;">View Certified Varieties</a>
-            </div>
-
-            <div class="origin-images">
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-mountain"></i>
-                    <span>[ Ratnapura Gem Pit Shaft ]</span>
-                </div>
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-water"></i>
-                    <span>[ Traditional Gem Washing Wicker Baskets ]</span>
-                </div>
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-microscope"></i>
-                    <span>[ Rough Gem Sorting ]</span>
-                </div>
-            </div>
+    <section class="origin-section" id="origin" aria-labelledby="origin-heading">
+      <div class="container origin-grid">
+        <div class="origin-text">
+          <h2 id="origin-heading">The Heritage of Ratnapura &amp; Alluvial Mining</h2>
+          <p>Sri Lanka (formerly Ceylon) is nicknamed <em>Rathnadeepa</em>—"The Island of Gems". For over 2,500 years, ethical traditional mining techniques have preserved gem deposits in alluvial riverbeds and ancient gravels.</p>
+          <p>Unlike heavy industrial open-pit mining, Sri Lankan gem extraction utilizes sustainable shaft mining and hand washing to protect local ecosystems while uncovering world-renowned untreated gems.</p>
+          <a href="#catalog" class="btn-outline" style="margin-top: 10px;">View Certified Varieties</a>
         </div>
+
+        <div class="origin-images">
+          <div class="img-placeholder">
+            <i class="fa-solid fa-mountain" aria-hidden="true"></i>
+            <span>[ Ratnapura Gem Pit Shaft ]</span>
+          </div>
+          <div class="img-placeholder">
+            <i class="fa-solid fa-water" aria-hidden="true"></i>
+            <span>[ Traditional Gem Washing Wicker Baskets ]</span>
+          </div>
+          <div class="img-placeholder">
+            <i class="fa-solid fa-microscope" aria-hidden="true"></i>
+            <span>[ Rough Gem Sorting ]</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- FULL GEM CATALOG DIRECTORY -->
-    <section class="catalog container" id="catalog">
+    <!-- CATALOG -->
+    <section class="catalog container" id="catalog" aria-labelledby="catalog-heading">
+      <div class="section-title">
+        <p class="eyebrow">Detailed Gem Profiles</p>
+        <h2 id="catalog-heading">Sri Lankan Gemstone Catalog</h2>
+        <p>Browse detailed mineralogical properties. Use the button on any card to connect with the distributor on WhatsApp about availability or certification.</p>
+      </div>
+
+      <div class="catalog-grid">
+
+        <!-- Gem 1 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Ceylon%20Royal%20Blue%20Sapphire.webp" alt="Ceylon royal blue sapphire" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Ceylon Royal Blue Sapphire</h3>
+              <span class="rarity-tag">Precious</span>
+            </div>
+            <p class="profile-desc">World famous for secondary intense luster and cornflower tones. Often unheated with high natural transparency.</p>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Mineral Family</dt><dd class="spec-value">Corundum</dd></div>
+              <div class="spec-row"><dt class="spec-label">Mohs Hardness</dt><dd class="spec-value">9.0</dd></div>
+              <div class="spec-row"><dt class="spec-label">Refractive Index</dt><dd class="spec-value">1.762 - 1.770</dd></div>
+              <div class="spec-row"><dt class="spec-label">Primary Region</dt><dd class="spec-value">Ratnapura / Elahera</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Ceylon Royal Blue Sapphire" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 2 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Padparadscha%20Sapphire.webp" alt="Padparadscha sapphire" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Padparadscha Sapphire</h3>
+              <span class="rarity-tag">Ultra Rare</span>
+            </div>
+            <p class="profile-desc">Named after the Sinhalese word for lotus blossom ("Padma Raga"). Perfectly balances subtle pink and orange hues.</p>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Mineral Family</dt><dd class="spec-value">Corundum</dd></div>
+              <div class="spec-row"><dt class="spec-label">Mohs Hardness</dt><dd class="spec-value">9.0</dd></div>
+              <div class="spec-row"><dt class="spec-label">Refractive Index</dt><dd class="spec-value">1.762 - 1.770</dd></div>
+              <div class="spec-row"><dt class="spec-label">Primary Region</dt><dd class="spec-value">Balangoda / Ratnapura</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Padparadscha Sapphire" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 3 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Ceylon%20Alexandrite.jpg" alt="Ceylon alexandrite" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Ceylon Alexandrite</h3>
+              <span class="rarity-tag">Collector Item</span>
+            </div>
+            <p class="profile-desc">Exhibits exceptional pleochroism and color transition from teal-green in incandescent light to purplish red in artificial light.</p>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Mineral Family</dt><dd class="spec-value">Chrysoberyl</dd></div>
+              <div class="spec-row"><dt class="spec-label">Mohs Hardness</dt><dd class="spec-value">8.5</dd></div>
+              <div class="spec-row"><dt class="spec-label">Refractive Index</dt><dd class="spec-value">1.745 - 1.754</dd></div>
+              <div class="spec-row"><dt class="spec-label">Primary Region</dt><dd class="spec-value">Meetiyagoda / Deniyaya</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Ceylon Alexandrite" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 4 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Ceylon%20Star%20Sapphire.webp" alt="Ceylon star sapphire" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Ceylon Star Sapphire</h3>
+              <span class="rarity-tag">Asterism</span>
+            </div>
+            <p class="profile-desc">Displays a sharp 6-ray star (asterism) caused by oriented microscopic rutile silk inclusions under direct light.</p>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Mineral Family</dt><dd class="spec-value">Corundum</dd></div>
+              <div class="spec-row"><dt class="spec-label">Mohs Hardness</dt><dd class="spec-value">9.0</dd></div>
+              <div class="spec-row"><dt class="spec-label">Refractive Index</dt><dd class="spec-value">1.760 - 1.770</dd></div>
+              <div class="spec-row"><dt class="spec-label">Primary Region</dt><dd class="spec-value">Pelmadulla</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Ceylon Star Sapphire" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 5 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Meetiyagoda%20Blue%20Moonstone.jpg" alt="Meetiyagoda blue moonstone" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Meetiyagoda Blue Moonstone</h3>
+              <span class="rarity-tag">Semi-Precious</span>
+            </div>
+            <p class="profile-desc">World-famous for serene adularescence—an ethereal floating blue shimmer across a transparent feldspar body.</p>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Mineral Family</dt><dd class="spec-value">Feldspar (Orthoclase)</dd></div>
+              <div class="spec-row"><dt class="spec-label">Mohs Hardness</dt><dd class="spec-value">6.0 - 6.5</dd></div>
+              <div class="spec-row"><dt class="spec-label">Refractive Index</dt><dd class="spec-value">1.518 - 1.526</dd></div>
+              <div class="spec-row"><dt class="spec-label">Primary Region</dt><dd class="spec-value">Meetiyagoda</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Meetiyagoda Blue Moonstone" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 6 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Natural%20Ceylon%20Spinel.jpg" alt="Natural Ceylon spinel" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Natural Ceylon Spinel</h3>
+              <span class="rarity-tag">Untreated</span>
+            </div>
+            <p class="profile-desc">Highly prized for single refraction, intense brilliance, and natural vivid red, cobalt blue, or lavender hues.</p>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Mineral Family</dt><dd class="spec-value">Spinel</dd></div>
+              <div class="spec-row"><dt class="spec-label">Mohs Hardness</dt><dd class="spec-value">8.0</dd></div>
+              <div class="spec-row"><dt class="spec-label">Refractive Index</dt><dd class="spec-value">1.718</dd></div>
+              <div class="spec-row"><dt class="spec-label">Primary Region</dt><dd class="spec-value">Okampitiya / Ratnapura</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Natural Ceylon Spinel" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+
+        <!-- Gem 7 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Yellow%20Sapphire.png" alt="Natural Heated Yellow Sapphire, 1.09 ct" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Natural Heated Yellow Sapphire</h3>
+              <span class="rarity-tag">1.09 ct</span>
+            </div>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Weight</dt><dd class="spec-value">1.09 ct</dd></div>
+              <div class="spec-row"><dt class="spec-label">Clarity</dt><dd class="spec-value">Top Eye Clean Stone</dd></div>
+              <div class="spec-row"><dt class="spec-label">Certificate</dt><dd class="spec-value">Certificated</dd></div>
+              <div class="spec-row"><dt class="spec-label">Origin</dt><dd class="spec-value">Ceylon (Sri Lanka)</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Natural Heated Yellow Sapphire 1.09 ct" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 8 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Green%20Sapphire.png" alt="Natural Unheated Green Sapphire, 1.06 ct" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Natural Unheated Green Sapphire</h3>
+              <span class="rarity-tag">1.06 ct</span>
+            </div>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Weight</dt><dd class="spec-value">1.06 ct</dd></div>
+              <div class="spec-row"><dt class="spec-label">Clarity</dt><dd class="spec-value">Loupe Clean Stone</dd></div>
+              <div class="spec-row"><dt class="spec-label">Certificate</dt><dd class="spec-value">Certificated</dd></div>
+              <div class="spec-row"><dt class="spec-label">Origin</dt><dd class="spec-value">Ceylon (Sri Lanka)</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Natural Unheated Green Sapphire 1.06 ct" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 9 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Natural%20Red.jpg" alt="Natural Red Garnet, 12.03 ct" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Natural Red Garnet</h3>
+              <span class="rarity-tag">12.03 ct</span>
+            </div>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Weight</dt><dd class="spec-value">12.03 ct</dd></div>
+              <div class="spec-row"><dt class="spec-label">Clarity</dt><dd class="spec-value">Full Loupe Clean Stone</dd></div>
+              <div class="spec-row"><dt class="spec-label">Certificate</dt><dd class="spec-value">Certificated</dd></div>
+              <div class="spec-row"><dt class="spec-label">Origin</dt><dd class="spec-value">Ceylon (Sri Lanka)</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Natural Red Garnet 12.03 ct" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 10 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Natural%20Blue%20Sapphire.jpg" alt="Natural Unheated Blue Sapphire, 5.03 ct" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Natural Unheated Blue Sapphire</h3>
+              <span class="rarity-tag">5.03 ct</span>
+            </div>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Weight</dt><dd class="spec-value">5.03 ct</dd></div>
+              <div class="spec-row"><dt class="spec-label">Clarity</dt><dd class="spec-value">Full Loupe Clean Stone</dd></div>
+              <div class="spec-row"><dt class="spec-label">Certificate</dt><dd class="spec-value">Certificated</dd></div>
+              <div class="spec-row"><dt class="spec-label">Origin</dt><dd class="spec-value">Ceylon (Sri Lanka)</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Natural Unheated Blue Sapphire 5.03 ct" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 11 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Rhodolite%20Garnet.jpg" alt="Rhodolite Garnet, 7.34 ct" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Rhodolite Garnet</h3>
+              <span class="rarity-tag">7.34 ct</span>
+            </div>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Weight</dt><dd class="spec-value">7.34 ct</dd></div>
+              <div class="spec-row"><dt class="spec-label">Clarity</dt><dd class="spec-value">Loupe Clean Stone</dd></div>
+              <div class="spec-row"><dt class="spec-label">Certificate</dt><dd class="spec-value">Certificated</dd></div>
+              <div class="spec-row"><dt class="spec-label">Origin</dt><dd class="spec-value">Ceylon (Sri Lanka)</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Rhodolite Garnet 7.34 ct" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+
+        <!-- Gem 12 -->
+        <article class="profile-card">
+          <div>
+            <img class="gem-img" src="images/Red%20Garnet.jpg" alt="Red Garnet, 3.58 ct" loading="lazy">
+            <div class="profile-header">
+              <h3 class="profile-title">Red Garnet</h3>
+              <span class="rarity-tag">3.58 ct</span>
+            </div>
+
+            <dl class="gem-specs">
+              <div class="spec-row"><dt class="spec-label">Weight</dt><dd class="spec-value">3.58 ct</dd></div>
+              <div class="spec-row"><dt class="spec-label">Clarity</dt><dd class="spec-value">Loupe Clean Stone</dd></div>
+              <div class="spec-row"><dt class="spec-label">Certificate</dt><dd class="spec-value">Certificated</dd></div>
+              <div class="spec-row"><dt class="spec-label">Origin</dt><dd class="spec-value">Ceylon (Sri Lanka)</dd></div>
+            </dl>
+          </div>
+          <a href="https://wa.me/94766609974" data-gem="Red Garnet 3.58 ct" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Inquire / Buy via WhatsApp
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- GEMOLOGY GUIDE -->
+    <section class="guide" id="guide" aria-labelledby="guide-heading">
+      <div class="container">
         <div class="section-title">
-            <h3>Detailed Gem Profiles</h3>
-            <h2>Sri Lankan Gemstone Catalog</h2>
-            <p>Browse detailed mineralogical properties. Click any card to connect with the distributor on WhatsApp regarding availability or certification.</p>
+          <p class="eyebrow">Evaluation Factors</p>
+          <h2 id="guide-heading">Sri Lankan Gem Evaluation Guide</h2>
+          <p>Understanding the key criteria when selecting natural Sri Lankan gemstones.</p>
         </div>
 
-        <div class="catalog-grid">
-
-            <!-- Gem Profile 1 -->
-            <div class="profile-card">
-                <div>
-                    <div class="img-placeholder">
-                        <i class="fa-solid fa-gem"></i>
-                        <span>[ Insert Ceylon Blue Sapphire Image ]</span>
-                    </div>
-                    <div class="profile-header">
-                        <h3 class="profile-title">Ceylon Royal Blue Sapphire</h3>
-                        <span class="rarity-tag">Precious</span>
-                    </div>
-                    <p class="profile-desc">World famous for secondary intense luster and cornflower tones. Often unheated with high natural transparency.</p>
-                    
-                    <div class="gem-specs">
-                        <div class="spec-row"><span class="spec-label">Mineral Family:</span><span class="spec-value">Corundum</span></div>
-                        <div class="spec-row"><span class="spec-label">Mohs Hardness:</span><span class="spec-value">9.0</span></div>
-                        <div class="spec-row"><span class="spec-label">Refractive Index:</span><span class="spec-value">1.762 - 1.770</span></div>
-                        <div class="spec-row"><span class="spec-label">Primary Region:</span><span class="spec-value">Ratnapura / Elahera</span></div>
-                    </div>
-                </div>
-                <button onclick="inquireGem('Ceylon Royal Blue Sapphire')" class="btn-whatsapp" style="width:100%; justify-content:center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire / Buy via WhatsApp
-                </button>
-            </div>
-
-            <!-- Gem Profile 2 -->
-            <div class="profile-card">
-                <div>
-                    <div class="img-placeholder">
-                        <i class="fa-solid fa-gem"></i>
-                        <span>[ Insert Padparadscha Image ]</span>
-                    </div>
-                    <div class="profile-header">
-                        <h3 class="profile-title">Padparadscha Sapphire</h3>
-                        <span class="rarity-tag">Ultra Rare</span>
-                    </div>
-                    <p class="profile-desc">Named after the Sinhalese word for lotus blossom ("Padma Raga"). Perfectly balances subtle pink and orange hues.</p>
-                    
-                    <div class="gem-specs">
-                        <div class="spec-row"><span class="spec-label">Mineral Family:</span><span class="spec-value">Corundum</span></div>
-                        <div class="spec-row"><span class="spec-label">Mohs Hardness:</span><span class="spec-value">9.0</span></div>
-                        <div class="spec-row"><span class="spec-label">Refractive Index:</span><span class="spec-value">1.762 - 1.770</span></div>
-                        <div class="spec-row"><span class="spec-label">Primary Region:</span><span class="spec-value">Balangoda / Ratnapura</span></div>
-                    </div>
-                </div>
-                <button onclick="inquireGem('Padparadscha Sapphire')" class="btn-whatsapp" style="width:100%; justify-content:center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire / Buy via WhatsApp
-                </button>
-            </div>
-
-            <!-- Gem Profile 3 -->
-            <div class="profile-card">
-                <div>
-                    <div class="img-placeholder">
-                        <i class="fa-solid fa-gem"></i>
-                        <span>[ Insert Alexandrite Image ]</span>
-                    </div>
-                    <div class="profile-header">
-                        <h3 class="profile-title">Ceylon Alexandrite</h3>
-                        <span class="rarity-tag">Collector Item</span>
-                    </div>
-                    <p class="profile-desc">Exhibits exceptional pleochroism and color transition from teal-green in incandescent light to purplish red in artificial light.</p>
-                    
-                    <div class="gem-specs">
-                        <div class="spec-row"><span class="spec-label">Mineral Family:</span><span class="spec-value">Chrysoberyl</span></div>
-                        <div class="spec-row"><span class="spec-label">Mohs Hardness:</span><span class="spec-value">8.5</span></div>
-                        <div class="spec-row"><span class="spec-label">Refractive Index:</span><span class="spec-value">1.745 - 1.754</span></div>
-                        <div class="spec-row"><span class="spec-label">Primary Region:</span><span class="spec-value">Meetiyagoda / Deniyaya</span></div>
-                    </div>
-                </div>
-                <button onclick="inquireGem('Ceylon Alexandrite')" class="btn-whatsapp" style="width:100%; justify-content:center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire / Buy via WhatsApp
-                </button>
-            </div>
-
-            <!-- Gem Profile 4 -->
-            <div class="profile-card">
-                <div>
-                    <div class="img-placeholder">
-                        <i class="fa-solid fa-gem"></i>
-                        <span>[ Insert Star Sapphire Image ]</span>
-                    </div>
-                    <div class="profile-header">
-                        <h3 class="profile-title">Ceylon Star Sapphire</h3>
-                        <span class="rarity-tag">Asterism</span>
-                    </div>
-                    <p class="profile-desc">Displays a sharp 6-ray star (asterism) caused by oriented microscopic rutile silk inclusions under direct light.</p>
-                    
-                    <div class="gem-specs">
-                        <div class="spec-row"><span class="spec-label">Mineral Family:</span><span class="spec-value">Corundum</span></div>
-                        <div class="spec-row"><span class="spec-label">Mohs Hardness:</span><span class="spec-value">9.0</span></div>
-                        <div class="spec-row"><span class="spec-label">Refractive Index:</span><span class="spec-value">1.760 - 1.770</span></div>
-                        <div class="spec-row"><span class="spec-label">Primary Region:</span><span class="spec-value">Pelmadulla</span></div>
-                    </div>
-                </div>
-                <button onclick="inquireGem('Ceylon Star Sapphire')" class="btn-whatsapp" style="width:100%; justify-content:center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire / Buy via WhatsApp
-                </button>
-            </div>
-
-            <!-- Gem Profile 5 -->
-            <div class="profile-card">
-                <div>
-                    <div class="img-placeholder">
-                        <i class="fa-solid fa-gem"></i>
-                        <span>[ Insert Moonstone Image ]</span>
-                    </div>
-                    <div class="profile-header">
-                        <h3 class="profile-title">Meetiyagoda Blue Moonstone</h3>
-                        <span class="rarity-tag">Semi-Precious</span>
-                    </div>
-                    <p class="profile-desc">World-famous for serene adularescence—an ethereal floating blue shimmer across a transparent feldspar body.</p>
-                    
-                    <div class="gem-specs">
-                        <div class="spec-row"><span class="spec-label">Mineral Family:</span><span class="spec-value">Feldspar (Orthoclase)</span></div>
-                        <div class="spec-row"><span class="spec-label">Mohs Hardness:</span><span class="spec-value">6.0 - 6.5</span></div>
-                        <div class="spec-row"><span class="spec-label">Refractive Index:</span><span class="spec-value">1.518 - 1.526</span></div>
-                        <div class="spec-row"><span class="spec-label">Primary Region:</span><span class="spec-value">Meetiyagoda (Southern Province)</span></div>
-                    </div>
-                </div>
-                <button onclick="inquireGem('Meetiyagoda Blue Moonstone')" class="btn-whatsapp" style="width:100%; justify-content:center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire / Buy via WhatsApp
-                </button>
-            </div>
-
-            <!-- Gem Profile 6 -->
-            <div class="profile-card">
-                <div>
-                    <div class="img-placeholder">
-                        <i class="fa-solid fa-gem"></i>
-                        <span>[ Insert Spinel Image ]</span>
-                    </div>
-                    <div class="profile-header">
-                        <h3 class="profile-title">Natural Ceylon Spinel</h3>
-                        <span class="rarity-tag">Untreated</span>
-                    </div>
-                    <p class="profile-desc">Highly prized for single refraction, intense brilliance, and natural vivid red, cobalt blue, or lavender hues.</p>
-                    
-                    <div class="gem-specs">
-                        <div class="spec-row"><span class="spec-label">Mineral Family:</span><span class="spec-value">Spinel</span></div>
-                        <div class="spec-row"><span class="spec-label">Mohs Hardness:</span><span class="spec-value">8.0</span></div>
-                        <div class="spec-row"><span class="spec-label">Refractive Index:</span><span class="spec-value">1.718</span></div>
-                        <div class="spec-row"><span class="spec-label">Primary Region:</span><span class="spec-value">Okampitiya / Ratnapura</span></div>
-                    </div>
-                </div>
-                <button onclick="inquireGem('Natural Ceylon Spinel')" class="btn-whatsapp" style="width:100%; justify-content:center;">
-                    <i class="fa-brands fa-whatsapp"></i> Inquire / Buy via WhatsApp
-                </button>
-            </div>
-
+        <div class="guide-grid">
+          <div class="guide-box">
+            <i class="fa-solid fa-palette" aria-hidden="true"></i>
+            <h3>Color &amp; Saturation</h3>
+            <p>Ceylon gems are famous for bright, lively body colors that maintain high brilliance without turning dark or muted.</p>
+          </div>
+          <div class="guide-box">
+            <i class="fa-solid fa-eye" aria-hidden="true"></i>
+            <h3>Clarity &amp; Inclusions</h3>
+            <p>Natural inclusions (like silk needles in sapphires) confirm genuine earth-mined origin and unheated status.</p>
+          </div>
+          <div class="guide-box">
+            <i class="fa-solid fa-scissors" aria-hidden="true"></i>
+            <h3>Custom Precision Cut</h3>
+            <p>Lapidary artisans in Colombo and Ratnapura cut each stone to maximize internal refraction and carat retention.</p>
+          </div>
+          <div class="guide-box">
+            <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+            <h3>NGJA Certification</h3>
+            <p>Authentic gems are verified by National Gem &amp; Jewellery Authority (NGJA) or GIA/GRS testing laboratories.</p>
+          </div>
         </div>
-    </section>
-
-    <!-- GEMOLOGY GUIDE (4Cs) -->
-    <section class="guide" id="guide">
-        <div class="container">
-            <div class="section-title">
-                <h3>Evaluation Factors</h3>
-                <h2>Sri Lankan Gem Evaluation Guide</h2>
-                <p>Understanding the key criteria when selecting natural Sri Lankan gemstones.</p>
-            </div>
-
-            <div class="guide-grid">
-                <div class="guide-box">
-                    <i class="fa-solid fa-palette"></i>
-                    <h4>Color & Saturation</h4>
-                    <p>Ceylon gems are famous for bright, lively body colors that maintain high brilliance without turning dark or muted.</p>
-                </div>
-                <div class="guide-box">
-                    <i class="fa-solid fa-eye"></i>
-                    <h4>Clarity & Inclusions</h4>
-                    <p>Natural inclusions (like silk needles in sapphires) confirm genuine earth-mined origin and unheated status.</p>
-                </div>
-                <div class="guide-box">
-                    <i class="fa-solid fa-scissors"></i>
-                    <h4>Custom Precision Cut</h4>
-                    <p>Lapidary artisans in Colombo and Ratnapura cut each stone to maximize internal refraction and carat retention.</p>
-                </div>
-                <div class="guide-box">
-                    <i class="fa-solid fa-certificate"></i>
-                    <h4>NGJA Certification</h4>
-                    <p>Authentic gems are verified by National Gem & Jewellery Authority (NGJA) or GIA/GRS testing laboratories.</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
     <!-- STATS -->
-    <section class="stats-section container">
+    <section class="stats-section" aria-labelledby="stats-heading">
+      <div class="container">
         <div class="stats-grid">
-            <div class="stat-box">
-                <h2>2500+</h2>
-                <p>Years Mining Heritage</p>
-            </div>
-            <div class="stat-box">
-                <h2>75+</h2>
-                <p>Gemstone Varieties</p>
-            </div>
-            <div class="stats-text">
-                <h3 style="font-family: var(--font-title); font-size: 20px; color: #fff; margin-bottom: 8px;">100% Certified Direct Access</h3>
-                <p style="color: var(--text-muted); font-size: 13px;">Skip middlemen and directly connect with licensed Sri Lankan gem distributors. Request custom lab reports, high-definition videos, and export guidance anytime.</p>
-            </div>
+          <div class="stat-box">
+            <p class="stat-number" data-target="2500" data-suffix="+">0</p>
+            <p class="stat-label">Years Mining Heritage</p>
+          </div>
+          <div class="stat-box">
+            <p class="stat-number" data-target="75" data-suffix="+">0</p>
+            <p class="stat-label">Gemstone Varieties</p>
+          </div>
+          <div class="stats-text">
+            <h2 id="stats-heading" class="stats-heading">100% Certified Direct Access</h2>
+            <p>Skip middlemen and directly connect with licensed Sri Lankan gem distributors. Request custom lab reports, high-definition videos, and export guidance anytime.</p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (NEW) -->
+    <section class="testimonials" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="section-title">
+          <p class="eyebrow">Trusted Worldwide</p>
+          <h2 id="testimonials-heading">What Our Clients Say</h2>
+          <p>Collectors, jewellers and investors who source Ceylon gemstones through us.</p>
+        </div>
+
+        <div class="testimonial-grid">
+
+          <blockquote class="testimonial">
+            <p>"The sapphire matched the WhatsApp video exactly — same saturation, same cut. NGJA certificate arrived with the stone. Truly professional."</p>
+            <footer class="testimonial-footer">
+              <div class="testimonial-avatar" aria-hidden="true">AM</div>
+              <div class="testimonial-meta">
+                <strong>A. Meier</strong>
+                <span>Private Collector · Zurich</span>
+                <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              </div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial">
+            <p>"We source our spinels and moonstones through them every season. Consistent quality, honest grading, and export paperwork always in order."</p>
+            <footer class="testimonial-footer">
+              <div class="testimonial-avatar" aria-hidden="true">RS</div>
+              <div class="testimonial-meta">
+                <strong>R. Silva</strong>
+                <span>Jewellery Buyer · London</span>
+                <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              </div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial">
+            <p>"Found a Padparadscha I'd been hunting for months. The team filmed it under natural light within an hour of my inquiry — no pressure, no upselling."</p>
+            <footer class="testimonial-footer">
+              <div class="testimonial-avatar" aria-hidden="true">JC</div>
+              <div class="testimonial-meta">
+                <strong>J. Chen</strong>
+                <span>Gem Investor · Singapore</span>
+                <div class="testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+              </div>
+            </footer>
+          </blockquote>
+
+        </div>
+      </div>
     </section>
 
     <!-- FAQ -->
-    <section class="faq container" id="faq">
-        <div class="section-title">
-            <h3>Knowledge Base</h3>
-            <h2>Frequently Asked Questions</h2>
-            <p>Essential guidance on purchasing and importing gemstones directly from Sri Lanka.</p>
+    <section class="faq container" id="faq" aria-labelledby="faq-heading">
+      <div class="section-title">
+        <p class="eyebrow">Knowledge Base</p>
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+        <p>Essential guidance on purchasing and importing gemstones directly from Sri Lanka.</p>
+      </div>
+
+      <div class="faq-container">
+        <div class="faq-list">
+
+          <div class="faq-item active">
+            <h3 class="faq-heading">
+              <button class="faq-question" type="button" id="faq-q1" aria-expanded="true" aria-controls="faq-a1">
+                <span>How do I verify the authenticity of a gemstone?</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+              <p>Every genuine Sri Lankan gemstone can be certified by government-accredited laboratories like the National Gem &amp; Jewellery Authority (NGJA) of Sri Lanka or independent GIA/GRS facilities.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-question" type="button" id="faq-q2" aria-expanded="false" aria-controls="faq-a2">
+                <span>How does buying via WhatsApp work?</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+              <p>When you tap "Inquire", you'll be connected directly to our Sri Lankan gem distributor on WhatsApp. You can request 360° videos under natural light, certification details, and pricing information instantly.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-question" type="button" id="faq-q3" aria-expanded="false" aria-controls="faq-a3">
+                <span>What is the difference between heated and unheated sapphires?</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+              <p>Unheated sapphires are 100% natural, as taken from the earth without thermal treatment. Heated sapphires undergo traditional gentle heating to improve clarity and color consistency.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <h3 class="faq-heading">
+              <button class="faq-question" type="button" id="faq-q4" aria-expanded="false" aria-controls="faq-a4">
+                <span>Can gemstones be legally exported from Sri Lanka?</span>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+            </h3>
+            <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+              <p>Yes. All official exports are declared through Sri Lanka Customs and NGJA authorities, ensuring all legal and tax standards are strictly followed.</p>
+            </div>
+          </div>
+
         </div>
 
-        <div class="faq-container">
-            <div class="faq-list">
-                <div class="faq-item active">
-                    <div class="faq-question">How do I verify the authenticity of a gemstone? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">Every genuine Sri Lankan gemstone can be certified by government-accredited laboratories like the National Gem & Jewellery Authority (NGJA) of Sri Lanka or independent GIA/GRS facilities.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How does buying via WhatsApp work? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">When you click "Inquire", you will be connected directly to our Sri Lankan gem distributor via WhatsApp. You can request 360° videos under natural light, certification details, and pricing information instantly.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What is the difference between Heated and Unheated Sapphires? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">Unheated sapphires are 100% natural, as taken from the earth without thermal treatment. Heated sapphires undergo traditional gentle heating to improve clarity and color consistency.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Can gemstones be legally exported from Sri Lanka? <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="faq-answer">Yes. All official exports are declared through Sri Lanka Customs and NGJA authorities, ensuring all legal and tax standards are strictly followed.</div>
-                </div>
-            </div>
-
-            <!-- FAQ Image Placeholder -->
-            <div class="img-placeholder" style="min-height: 380px;">
-                <i class="fa-solid fa-stamp"></i>
-                <p><strong>[ Insert Gem Certification / Lab Inspection Image ]</strong></p>
-                <p>e.g., NGJA Certificate & Gemologist Testing</p>
-            </div>
+        <div class="img-placeholder" style="min-height: 380px;">
+          <i class="fa-solid fa-stamp" aria-hidden="true"></i>
+          <p><strong>[ Insert Gem Certification / Lab Inspection Image ]</strong></p>
+          <p>e.g., NGJA Certificate &amp; Gemologist Testing</p>
         </div>
+      </div>
     </section>
 
-    <!-- FOOTER / CONTACT -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Ceylon Gem Vault</h4>
-                    <p>Connecting global gem enthusiasts, jewellers, and collectors with ethical Sri Lankan gemstone suppliers.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Key Navigation</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#catalog">Gem Directory</a></li>
-                        <li><a href="#origin">Origins & Mining</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Distributor Contact</h4>
-                    <p><i class="fa-solid fa-location-dot"></i> Ratnapura / Colombo, Sri Lanka</p>
-                    <p><i class="fa-brands fa-whatsapp"></i> Direct WhatsApp Messaging</p>
-                    <p><i class="fa-solid fa-shield-halved"></i> Government NGJA Approved Dealer</p>
-                </div>
-            </div>
+  </main>
 
-            <div class="footer-bottom">
-                &copy; 2026 Ceylon Gem Vault Sri Lanka. All Rights Reserved. Informational Portal & Showcase.
-            </div>
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Ceylon Gem Vault</h3>
+          <p>Connecting global gem enthusiasts, jewellers, and collectors with ethical Sri Lankan gemstone suppliers.</p>
         </div>
-    </footer>
+        <div class="footer-col">
+          <h3>Key Navigation</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#catalog">Gem Directory</a></li>
+            <li><a href="#origin">Origins &amp; Mining</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Distributor Contact</h3>
+          <p><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Ratnapura / Colombo, Sri Lanka</p>
+          <p><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Direct WhatsApp Messaging</p>
+          <p><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Government NGJA Approved Dealer</p>
+        </div>
+      </div>
 
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        // FUNCTION TO GENERATE DYNAMIC WHATSAPP LINKS WITH CUSTOM PRE-FILLED MESSAGES
-        function inquireGem(gemName) {
-            const message = `Hello! I came across your website and I would like to receive more details, pictures, or videos of the ${gemName}.`;
-            const encodedMsg = encodeURIComponent(message);
-            const waUrl = `https://wa.me/${DISTRIBUTOR_WHATSAPP}?text=${encodedMsg}`;
-            window.open(waUrl, '_blank');
-        }
+      <div class="footer-bottom">
+        &copy; <span id="year">2026</span> Ceylon Gem Vault Sri Lanka. All Rights Reserved. Informational Portal &amp; Showcase.
+      </div>
+    </div>
+  </footer>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // Setup static WhatsApp links
-            const defaultMsg = encodeURIComponent("Hello! I am visiting your website and would like to inquire about Sri Lankan gemstones.");
-            const defaultUrl = `https://wa.me/${DISTRIBUTOR_WHATSAPP}?text=${defaultMsg}`;
-            
-            document.getElementById('floatingWaBtn').href = defaultUrl;
-            document.getElementById('navWaBtn').href = defaultUrl;
-            document.getElementById('heroWaBtn').href = defaultUrl;
+  <!-- ============================================================
+       LIGHTBOX (NEW)
+       ============================================================ -->
+  <div
+    class="lightbox"
+    id="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Gemstone preview"
+    hidden>
+    <button class="lightbox-close" type="button" aria-label="Close preview">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+    <div class="lightbox-body">
+      <div id="lightboxMedia"></div>
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+      <p class="lightbox-hint">Press Esc or click outside to close</p>
+    </div>
+  </div>
 
-            // Mobile Navigation Menu Toggle
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('navLinks');
+  <!-- STRUCTURED DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "JewelryStore",
+    "name": "Ceylon Gem Vault",
+    "description": "Connecting global gem enthusiasts and collectors with ethical Sri Lankan gemstone suppliers.",
+    "url": "https://www.example.com/",
+    "telephone": "+94766609974",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ratnapura",
+      "addressCountry": "LK"
+    },
+    "areaServed": "Worldwide"
+  }
+  </script>
 
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-                hamburger.querySelector('i').classList.toggle('fa-xmark');
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---------------------------------------------------------
+         CONFIG
+         --------------------------------------------------------- */
+      var WA_NUMBER = '94766609974';
+      var DEFAULT_MSG = 'Hello! I would like to inquire about Sri Lankan gemstones.';
+
+      function waUrl(message) {
+        return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(message);
+      }
+
+      var header       = document.querySelector('.site-header');
+      var navLinks     = document.getElementById('navLinks');
+      var hamburger    = document.getElementById('hamburger');
+      var hamburgerIco = hamburger.querySelector('i');
+
+      /* ---------------------------------------------------------
+         1. Header height sync
+         --------------------------------------------------------- */
+      function syncHeaderHeight() {
+        document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+      }
+      syncHeaderHeight();
+      window.addEventListener('resize', syncHeaderHeight);
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(syncHeaderHeight).observe(header);
+      }
+
+      /* ---------------------------------------------------------
+         2. WhatsApp links
+         --------------------------------------------------------- */
+      document.querySelectorAll('[data-wa="default"]').forEach(function (el) {
+        el.href = waUrl(DEFAULT_MSG);
+      });
+      document.querySelectorAll('[data-gem]').forEach(function (el) {
+        el.href = waUrl(
+          'Hello! I came across your website and I would like to receive more details, ' +
+          'pictures, or videos of the ' + el.dataset.gem + '.'
+        );
+      });
+
+      /* ---------------------------------------------------------
+         3. Mobile navigation
+         --------------------------------------------------------- */
+      function closeMenu() {
+        if (!navLinks.classList.contains('active')) return;
+        navLinks.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        hamburgerIco.classList.add('fa-bars');
+        hamburgerIco.classList.remove('fa-xmark');
+        document.documentElement.classList.remove('no-scroll');
+      }
+
+      hamburger.addEventListener('click', function () {
+        var isOpen = !navLinks.classList.contains('active');
+        navLinks.classList.toggle('active', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+        hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+        hamburgerIco.classList.toggle('fa-bars', !isOpen);
+        hamburgerIco.classList.toggle('fa-xmark', isOpen);
+        document.documentElement.classList.toggle('no-scroll', isOpen);
+      });
+
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+
+      var desktopQuery = window.matchMedia('(min-width: 769px)');
+      var onBreakpointChange = function (e) { if (e.matches) closeMenu(); };
+      if (desktopQuery.addEventListener) {
+        desktopQuery.addEventListener('change', onBreakpointChange);
+      } else if (desktopQuery.addListener) {
+        desktopQuery.addListener(onBreakpointChange);
+      }
+
+      /* ---------------------------------------------------------
+         4. Scroll spy
+         --------------------------------------------------------- */
+      var spyLinks = Array.prototype.slice.call(
+        document.querySelectorAll('.nav-links a[href^="#"]')
+      );
+      var spySections = spyLinks
+        .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+        .filter(Boolean);
+
+      if ('IntersectionObserver' in window && spySections.length) {
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = '#' + entry.target.id;
+            spyLinks.forEach(function (a) {
+              a.classList.toggle('active', a.getAttribute('href') === id);
             });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        spySections.forEach(function (section) { spy.observe(section); });
+      }
 
-            // Close mobile menu when nav item clicked
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                    if(hamburger.querySelector('i')) {
-                        hamburger.querySelector('i').classList.remove('fa-xmark');
-                    }
-                });
-            });
-
-            // Active Navigation Highlight on Scroll
-            const sections = document.querySelectorAll('section, footer');
-            const navLi = document.querySelectorAll('.nav-links li a');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= (sectionTop - 150)) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLi.forEach(a => {
-                    a.classList.remove('active');
-                    if (a.getAttribute('href') === `#${current}`) {
-                        a.classList.add('active');
-                    }
-                });
-            });
-
-            // FAQ Accordion Toggle
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    item.classList.toggle('active');
-                });
-            });
+      /* ---------------------------------------------------------
+         5. FAQ accordion
+         --------------------------------------------------------- */
+      var faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(function (item) {
+        var button = item.querySelector('.faq-question');
+        button.addEventListener('click', function () {
+          var wasOpen = item.classList.contains('active');
+          faqItems.forEach(function (other) {
+            other.classList.remove('active');
+            other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+          if (!wasOpen) {
+            item.classList.add('active');
+            button.setAttribute('aria-expanded', 'true');
+          }
         });
-    </script>
+      });
+
+      /* ---------------------------------------------------------
+         6. Reveal on scroll
+         --------------------------------------------------------- */
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReduced && 'IntersectionObserver' in window) {
+        var revealTargets = document.querySelectorAll(
+          '.section-title, .stats-grid, .guide-grid, .catalog-grid, .testimonial-grid'
+        );
+
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        revealTargets.forEach(function (el) {
+          el.classList.add('reveal');
+          revealObserver.observe(el);
+        });
+      }
+
+      /* ---------------------------------------------------------
+         7. Animated counters
+         --------------------------------------------------------- */
+      function animateCount(el, target, suffix, duration) {
+        duration = duration || 1600;
+        var start = performance.now();
+
+        function tick(now) {
+          var t = Math.min((now - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+          var value = Math.round(target * eased);
+          el.textContent = value.toLocaleString() + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      var counters = document.querySelectorAll('.stat-number[data-target]');
+      if (counters.length) {
+        if (prefersReduced || !('IntersectionObserver' in window)) {
+          // Just set final value immediately
+          counters.forEach(function (el) {
+            el.textContent = (+el.dataset.target).toLocaleString() + (el.dataset.suffix || '');
+          });
+        } else {
+          var counterObserver = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              var el = entry.target;
+              animateCount(el, +el.dataset.target, el.dataset.suffix || '');
+              obs.unobserve(el);
+            });
+          }, { threshold: 0.5 });
+          counters.forEach(function (el) { counterObserver.observe(el); });
+        }
+      }
+
+      /* ---------------------------------------------------------
+         8. Lightbox
+         --------------------------------------------------------- */
+      var lightbox        = document.getElementById('lightbox');
+      var lightboxMedia   = document.getElementById('lightboxMedia');
+      var lightboxCaption = document.getElementById('lightboxCaption');
+      var lastFocused     = null;
+
+      function openLightbox(mediaEl, title) {
+        lightboxMedia.innerHTML = '';
+        lightboxCaption.textContent = title || '';
+
+        var cloned;
+        if (mediaEl.tagName === 'IMG') {
+          cloned = document.createElement('img');
+          cloned.src = mediaEl.currentSrc || mediaEl.src;
+          cloned.alt = mediaEl.alt || title || '';
+        } else {
+          cloned = mediaEl.cloneNode(true);
+          cloned.classList.remove('is-clickable');
+          // Remove the hover magnifier pseudo by removing its parent class association
+          cloned.style.cursor = 'default';
+        }
+        lightboxMedia.appendChild(cloned);
+
+        lastFocused = document.activeElement;
+        lightbox.hidden = false;
+        document.documentElement.classList.add('no-scroll');
+        lightbox.querySelector('.lightbox-close').focus();
+      }
+
+      function closeLightbox() {
+        if (lightbox.hidden) return;
+        lightbox.hidden = true;
+        lightboxMedia.innerHTML = '';
+        document.documentElement.classList.remove('no-scroll');
+        if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+      }
+
+      // Attach click handlers to media inside gem cards / profile cards
+      document.querySelectorAll('.gem-card, .profile-card').forEach(function (card) {
+        var media = card.querySelector('.img-placeholder, img');
+        var titleEl = card.querySelector('.profile-title, h3');
+        var title = titleEl ? titleEl.textContent.trim() : '';
+
+        if (!media) return;
+
+        media.setAttribute('role', 'button');
+        media.setAttribute('tabindex', '0');
+        media.setAttribute('aria-label', 'View ' + (title || 'gem') + ' enlarged');
+
+        function open() { openLightbox(media, title); }
+
+        media.addEventListener('click', open);
+        media.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+            e.preventDefault();
+            open();
+          }
+        });
+      });
+
+      lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+      });
+
+      /* ---------------------------------------------------------
+         9. Current year
+         --------------------------------------------------------- */
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+  </script>
+
 </body>
 </html>
