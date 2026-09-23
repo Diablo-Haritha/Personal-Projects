@@ -1327,6 +1327,10 @@
         min-height: 200px;
       }
 
+      /* Hero image removed on mobile — text takes full width */
+      .hero .gem-img { display: none; }
+      .hero-content { grid-template-columns: 1fr; }
+
       .stats-grid { grid-template-columns: 1fr; padding: 25px; }
       .stats-text { grid-column: span 1; }
 
@@ -2299,6 +2303,14 @@
          --------------------------------------------------------- */
       if (!prefersReduced && 'IntersectionObserver' in window) {
 
+        var revealedEls = [];
+
+        function settleReveal(el) {
+          el.classList.remove('reveal', 'visible');
+          el.style.animationDelay = '';
+          el.style.removeProperty('--d');
+        }
+
         var revealObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (!entry.isIntersecting) return;
@@ -2310,9 +2322,7 @@
             // inline delay so hover transforms / 3D tilt are never blocked.
             el.addEventListener('animationend', function (e) {
               if (e.target !== el) return;
-              el.classList.remove('reveal', 'visible');
-              el.style.animationDelay = '';
-              el.style.removeProperty('--d');
+              settleReveal(el);
             }, { once: true });
           });
         }, { threshold: 0, rootMargin: '0px 0px -55px 0px' });
@@ -2321,6 +2331,7 @@
           el.classList.add('reveal');
           if (delayMs) el.style.setProperty('--d', delayMs + 'ms');
           revealObserver.observe(el);
+          revealedEls.push(el);
         }
 
         // Whole-block reveals
@@ -2334,6 +2345,22 @@
               prepReveal(child, Math.min(i, 6) * 75);
             });
           });
+
+        // Safety net: some mobile browsers/webviews fire IntersectionObserver
+        // inconsistently (viewport quirks, background tabs, in-app browsers).
+        // If anything is still hidden a few seconds after load, force it visible
+        // so content is never permanently stuck at opacity:0.
+        window.addEventListener('load', function () {
+          setTimeout(function () {
+            revealedEls.forEach(function (el) {
+              if (!el.classList.contains('visible')) {
+                revealObserver.unobserve(el);
+                el.classList.remove('reveal');
+                settleReveal(el);
+              }
+            });
+          }, 2500);
+        });
       }
 
       /* ---------------------------------------------------------
