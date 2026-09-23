@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Ceylon Gems Vault | Sri Lankan Gemstone Heritage</title>
   <meta name="description" content="Authentic Sri Lankan gemstones — Ceylon Blue Sapphire, Padparadscha, Alexandrite, Cat's Eye, Moonstone and Spinel. Ethically sourced from Ratnapura with NGJA certification support.">
   <meta name="theme-color" content="#050b12">
@@ -48,6 +48,7 @@
     html {
       scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html.no-scroll,
@@ -59,6 +60,7 @@
       font-family: var(--font-body);
       line-height: 1.6;
       overflow-x: hidden;
+      overscroll-behavior-y: none;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -117,9 +119,11 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       font-size: 14px;
     }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(78, 161, 255, 0.35);
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(78, 161, 255, 0.35);
+      }
     }
 
     .btn-whatsapp {
@@ -136,9 +140,11 @@
       font-size: 13px;
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
-    .btn-whatsapp:hover {
-      background-color: var(--accent-blue-deep);
-      transform: translateY(-2px);
+    @media (hover: hover) and (pointer: fine) {
+      .btn-whatsapp:hover {
+        background-color: var(--accent-blue-deep);
+        transform: translateY(-2px);
+      }
     }
 
     .btn-outline {
@@ -153,7 +159,9 @@
       font-size: 14px;
       transition: background-color 0.3s ease;
     }
-    .btn-outline:hover { background: rgba(78, 161, 255, 0.1); }
+    @media (hover: hover) and (pointer: fine) {
+      .btn-outline:hover { background: rgba(78, 161, 255, 0.1); }
+    }
 
     /* ============================================================
        IMAGE PLACEHOLDERS
@@ -214,10 +222,12 @@
       pointer-events: none;
       z-index: 2;
     }
-    .gem-card .img-placeholder:hover::after,
-    .profile-card .img-placeholder:hover::after {
-      opacity: 1;
-      transform: scale(1);
+    @media (hover: hover) and (pointer: fine) {
+      .gem-card .img-placeholder:hover::after,
+      .profile-card .img-placeholder:hover::after {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     /* ============================================================
@@ -229,7 +239,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      padding: 18px 0;
+      padding: calc(18px + env(safe-area-inset-top, 0px)) 0 18px;
       background: rgba(5, 11, 18, 0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -408,11 +418,13 @@
     .profile-card {
       transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
-    .gem-card:hover,
-    .profile-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(78, 161, 255, 0.4);
-      box-shadow: 0 14px 34px rgba(78, 161, 255, 0.14);
+    @media (hover: hover) and (pointer: fine) {
+      .gem-card:hover,
+      .profile-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(78, 161, 255, 0.4);
+        box-shadow: 0 14px 34px rgba(78, 161, 255, 0.14);
+      }
     }
 
     /* ============================================================
@@ -622,10 +634,12 @@
       position: relative;
       transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
-    .testimonial:hover {
-      transform: translateY(-4px);
-      border-color: rgba(78, 161, 255, 0.35);
-      box-shadow: 0 12px 30px rgba(78, 161, 255, 0.12);
+    @media (hover: hover) and (pointer: fine) {
+      .testimonial:hover {
+        transform: translateY(-4px);
+        border-color: rgba(78, 161, 255, 0.35);
+        box-shadow: 0 12px 30px rgba(78, 161, 255, 0.12);
+      }
     }
     .testimonial::before {
       content: '\201C'; /* opening curly quote */
@@ -746,8 +760,8 @@
        ============================================================ */
     .floating-whatsapp {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
+      bottom: calc(25px + env(safe-area-inset-bottom, 0px));
+      right: calc(25px + env(safe-area-inset-right, 0px));
       background-color: var(--accent-blue);
       color: #fff;
       width: 60px;
@@ -761,9 +775,11 @@
       z-index: 999;
       transition: transform 0.3s ease, background-color 0.3s ease;
     }
-    .floating-whatsapp:hover {
-      transform: scale(1.1);
-      background-color: var(--accent-blue-deep);
+    @media (hover: hover) and (pointer: fine) {
+      .floating-whatsapp:hover {
+        transform: scale(1.1);
+        background-color: var(--accent-blue-deep);
+      }
     }
 
     /* ============================================================
@@ -882,9 +898,11 @@
       justify-content: center;
       transition: background-color 0.2s ease, transform 0.2s ease;
     }
-    .lightbox-close:hover {
-      background: var(--bg-card);
-      transform: rotate(90deg);
+    @media (hover: hover) and (pointer: fine) {
+      .lightbox-close:hover {
+        background: var(--bg-card);
+        transform: rotate(90deg);
+      }
     }
 
     /* ============================================================
@@ -961,8 +979,8 @@
         width: 54px;
         height: 54px;
         font-size: 26px;
-        bottom: 20px;
-        right: 20px;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        right: calc(20px + env(safe-area-inset-right, 0px));
       }
 
       .lightbox { padding: 50px 14px 30px; }
@@ -1016,8 +1034,10 @@
   cursor: zoom-in;
   transition: transform 0.4s ease, filter 0.4s ease;
 }
-.gem-card:hover .gem-img,
-.profile-card:hover .gem-img { filter: brightness(1.08); }
+@media (hover: hover) and (pointer: fine) {
+  .gem-card:hover .gem-img,
+  .profile-card:hover .gem-img { filter: brightness(1.08); }
+}
 
 @media (max-width: 768px) {
   .origin-images .gem-img:first-child { min-height: 200px; }
@@ -1051,7 +1071,7 @@
 
       <nav aria-label="Main navigation">
         <ul class="nav-links" id="navLinks">
-          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#home" class="active" aria-current="true">Home</a></li>
           <li><a href="#featured">Featured Gems</a></li>
           <li><a href="#origin">Origins &amp; History</a></li>
           <li><a href="#catalog">Gem Directory</a></li>
@@ -1828,7 +1848,13 @@
             if (!entry.isIntersecting) return;
             var id = '#' + entry.target.id;
             spyLinks.forEach(function (a) {
-              a.classList.toggle('active', a.getAttribute('href') === id);
+              var isCurrent = a.getAttribute('href') === id;
+              a.classList.toggle('active', isCurrent);
+              if (isCurrent) {
+                a.setAttribute('aria-current', 'true');
+              } else {
+                a.removeAttribute('aria-current');
+              }
             });
           });
         }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
